@@ -46,12 +46,12 @@
 
 | خروجی | توضیح |
 |-------|-------|
-| `openvpn.json` | متادیتای کامل کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ، SHA256) — `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn.json` |
-| ZIP کامل | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-openvpn.zip` |
-| ZIP مخصوص VPNBook (بدون ورود دستی) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-vpnbook.zip` |
+| `openvpn.json` | متادیتای همه کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ) — `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn.json` |
+| ZIP کامل (یک بستهٔ واحد) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn.zip` |
+| دانلود تکی هر فایل | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn/<نام-فایل>.ovpn` — هر فایل مستقل و با احراز هویت داخل خودش |
 
-> منابع: کانال‌های `openvpn_channels.txt` + VPNBook — فقط پست‌های ۲۴ ساعت اخیر جمع می‌شود و
-> پیوست‌های `.ovpn` با MTProto رسمی دانلود می‌شوند (راهنما: `README-OPENVPN.md`).
+> فقط پست‌های ۲۴ ساعت اخیر جمع می‌شود و پیوست‌های `.ovpn` با MTProto رسمی دانلود می‌شوند
+> (راهنما: `README-OPENVPN.md`).
 
 > ⚠️ فایل پروتکلی که در اجرای فعلی کانفیگ زنده نداشته باشد، ساخته نمی‌شود (مثلاً اگر هیچ TUIC زنده‌ای نباشد، `tuic.txt` وجود ندارد).
 > ⚠️ Protocol files with zero alive configs in the current run are not created.
@@ -117,8 +117,8 @@ All configs are auto-renamed with the server's country flag + ISO code: `@mehdis
 | `plain_all.csv` | همان لیست با متادیتا (کشور، پینگ، زمان چک منبع) |
 | `wireguard.txt` / `wireguard_b64.txt` | کانفیگ‌های WireGuard به صورت لینک wireguard:// + Base64 |
 | `wireguard_conf.txt` | همان کانفیگ‌ها به صورت بلوک .conf برای اپ رسمی WireGuard / AmneziaWG |
-| `openvpn.json` | متادیتای کانفیگ‌های OpenVPN (کشور/سرور/پورت/تاریخ/SHA256) |
-| `mehdisedighinasab-openvpn.zip` / `mehdisedighinasab-vpnbook.zip` | بسته‌های .ovpn با نام‌گذاری mehdisedighinasab-COUNTRY-N-TCP/UDP-PORT |
+| `openvpn.json` | متادیتای کانفیگ‌های OpenVPN (کشور/سرور/پورت/تاریخ) |
+| `openvpn.zip` + `openvpn/<name>.ovpn` | بستهٔ واحد همهٔ .ovpn ها + تک‌فایل‌ها برای دانلود جدا — نام‌گذاری mehdisedighinasab-COUNTRY-N-TCP/UDP-PORT |
 | `stats.json` | آمار آخرین اجرای V2Ray |
 | `mtproto_stats.json` | آمار آخرین اجرای MTProto/WireGuard |
 | `plain_stats.json` | آمار آخرین اجرای کالکتور پروکسی‌های ساده |

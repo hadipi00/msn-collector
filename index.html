@@ -139,6 +139,15 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .flaggrid{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
 .fpill{display:inline-flex;align-items:center;gap:.35rem;background:var(--glass);border:1px solid var(--line);border-radius:9px;padding:.3rem .6rem;font-size:.78rem;color:var(--tx2)}
 .fpill b{color:var(--tx)}
+.ovlist{display:flex;flex-direction:column;gap:.4rem;max-height:340px;overflow-y:auto;padding-left:.15rem}
+.ovrow{display:flex;align-items:center;gap:.65rem;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem}
+.ovrow:hover{border-color:var(--line2)}
+.ovinfo{display:flex;flex-direction:column;min-width:0;flex:1}
+.ovinfo b{font-size:.78rem;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:left}
+.ovinfo span{font-size:.7rem;color:var(--tx3)}
+.ovsearch{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;color:var(--tx);font-family:inherit;font-size:.8rem;outline:none;margin-bottom:.7rem}
+.ovsearch::placeholder{color:var(--tx3)}
+.ovrow .act.dl{padding:.3rem .75rem;font-size:.72rem;flex-shrink:0}
 
 /* ===== countries ===== */
 .cbar{display:grid;gap:.55rem}
@@ -253,7 +262,7 @@ footer .heart{color:var(--pk)}
   <div class="sec-head">
     <div class="kick">OPENVPN</div>
     <h2>OpenVPN — فایل‌های آماده</h2>
-    <p>بسته‌های Zip با ۴۰ سرور از ۵ کشور، همراه با نام کاربری و رمز عبور — آماده برای OpenVPN Connect.</p>
+    <p>کانفیگ‌های آمادهٔ OpenVPN در یک بستهٔ واحد — نام کاربری و رمز داخل خود فایل‌هاست؛ همه را یکجا بگیر یا هر فایل را تکی دانلود کن.</p>
   </div>
   <div class="ov-grid" id="ovGrid"></div>
 </section>
@@ -477,22 +486,39 @@ function pushRows(){
 function showAll(){ applyFilter(); }
 
 /* ================= openvpn ================= */
+function ovRenderList(list){
+  $('#ovList').innerHTML = list.length ? list.map(e => `<div class="ovrow">
+      <span class="cflag">${e.flag||flagOf(e.country_code)}</span>
+      <div class="ovinfo"><b>${e.filename||''}</b><span>${FA_COUNTRY[e.country_code] || e.country || ''} · ${(e.transport||'').toUpperCase()} ${faNum(e.port||'')}</span></div>
+      <a class="act dl" href="openvpn/${encodeURIComponent(e.filename||'')}" download title="دانلود این فایل">⬇ دانلود</a></div>`).join('')
+    : '<div style="color:var(--tx3);font-size:.78rem;padding:.6rem .2rem">موردی یافت نشد</div>';
+}
+function ovFilter(){
+  const q = ($('#ovSearch').value || '').toLowerCase();
+  ovRenderList((window._ovCfgs || []).filter(e =>
+    ((e.filename||'') + (e.country||'') + (e.country_code||'') + (e.port||'')).toLowerCase().includes(q)));
+}
 function renderOv(){
   const cs = (OV.countries || []).slice(0, 8);
+  const cfgs = (OV.configs || []).slice()
+    .sort((a,b) => (a.country||'').localeCompare(b.country||'') || String(a.filename||'').localeCompare(b.filename||''));
+  window._ovCfgs = cfgs;
   $('#ovGrid').innerHTML = `
     <div class="ovcard">
-      <h3>📦 بستهٔ OpenVPN مخصوص</h3>
-      <p>کانفیگ‌های .ovpn گردآوری‌شده از کانال‌های تلگرام، آمادهٔ ایمپورت در OpenVPN Connect.</p>
-      <div class="meta"><span class="tag">🖥 ${faNum(OV.total||0)} سرور</span><span class="tag">🏳 ${cs.length} کشور</span></div>
-      <div class="acts"><a class="act dl" href="mehdisedighinasab-openvpn.zip" download>⬇ دانلود Zip</a></div>
+      <h3>📦 بستهٔ کامل OpenVPN</h3>
+      <p>همهٔ فایل‌های .ovpn در یک بستهٔ واحد ادغام شده‌اند — نام کاربری و رمز هر فایل از قبل داخل خودش قرار دارد؛ ایمپورت کن و وصل شو.</p>
+      <div class="meta"><span class="tag">🖥 ${faNum(OV.total||0)} فایل</span><span class="tag">🏳 ${faNum(cs.length)} کشور</span><span class="tag">🔄 هر ۲ ساعت</span></div>
+      <div class="acts"><a class="act dl" href="openvpn.zip" download>⬇ دانلود همه (Zip)</a></div>
       <div class="flaggrid">${cs.map(c => `<span class="fpill">${c.flag||flagOf(c.country_code)} <b>${faNum(c.count)}</b></span>`).join('')}</div>
     </div>
     <div class="ovcard">
-      <h3>🔓 بستهٔ VPNBook</h3>
-      <p>کانفیگ‌های رایگان VPNBook با احراز هویت — همراه با نام کاربری و رمز عبور داخل بسته.</p>
-      <div class="meta"><span class="tag">🔄 آپدیت خودکار</span><span class="tag">🔐 با کرنشیال</span></div>
-      <div class="acts"><a class="act dl" href="mehdisedighinasab-vpnbook.zip" download>⬇ دانلود Zip</a></div>
+      <h3>📄 دانلود تکی هر فایل</h3>
+      <p>هر سرور یک فایل مستقل است — جستجو کن و فقط فایل موردنظرت را دانلود کن.</p>
+      <div class="meta"><span class="tag">🔐 بدون ورود دستی</span><span class="tag">🧩 تک‌فایل</span></div>
+      <input id="ovSearch" class="ovsearch" type="search" placeholder="جستجو (کشور، پورت، نام فایل…)…" oninput="ovFilter()">
+      <div id="ovList" class="ovlist"></div>
     </div>`;
+  ovRenderList(cfgs);
   const ov = $('#cbarOv'), mx = Math.max(...cs.map(c => c.count||0), 1);
   ov.innerHTML = cs.map(c => `<div class="crow">
       <span class="cflag">${c.flag||flagOf(c.country_code)}</span>

@@ -22,7 +22,7 @@ Freshness rules (spec):
   - duplicates are detected by SHA256 of the canonical config content
 
 Outputs (all new files — nothing existing is touched or rewritten):
-  openvpn.json, mehdisedighinasab-openvpn.zip, mehdisedighinasab-vpnbook.zip,
+  openvpn.json, openvpn.zip, openvpn/<name>.ovpn (one file per config),
   openvpn_state.json, openvpn_last_update.txt
 
 Pure Python 3 stdlib + optional Telethon (only when MTProto creds are set).
@@ -617,28 +617,6 @@ def prune_registry(state):
     state["registry"] = dict(keep)
 
 
-def vpnbook_zip_files(reg, creds):
-    """{zip_path: bytes} for the VPNBook-only package.  Credentials are
-    embedded in the .ovpn files themselves (never in openvpn.json)."""
-    embed = bool(creds and cfg.VPNBOOK_EMBED_CREDS)
-    files = {}
-    for e in reg.values():
-        if e.get("vpnbook_id"):
-            content = e["config"]
-            if embed:
-                content = inject_inline_creds(content, creds["username"],
-                                              creds["password"])
-            files[e["filename"]] = content.encode("utf-8")
-    if creds and cfg.VPNBOOK_EMBED_CREDS:
-        files[f"{cfg.CREDENTIALS_FILE}"] = (
-            f"{creds['username']}\n{creds['password']}\n").encode()
-        files["VPNBOOK-README.txt"] = VPNBOOK_README.encode("utf-8")
-        files["SECURITY-WARNING.txt"] = SECURITY_WARNING.encode("utf-8")
-    elif not cfg.VPNBOOK_EMBED_CREDS or not creds:
-        files["AUTH-REQUIRED.txt"] = AUTH_REQUIRED.encode("utf-8")
-    return files
-
-
 def build_zip(path, files):
     buf = zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED)
     try:
@@ -663,70 +641,69 @@ def write_outputs(state, creds, run_meta):
               if e.get("vpnbook_id")
               or (parse_iso(e["collected_at"]) or now) >= retention_cut}
 
-    # ---------- openvpn.json (credentials NEVER included) ----------
+    # ---------- openvpn.json (no source fields, no config bodies) ------------
     countries = {}
     for e in active.values():
         c = countries.setdefault(e["country"], {
             "country": e["country"], "country_code": e["country_code"],
             "flag": e["flag"], "count": 0})
         c["count"] += 1
+    embed = bool(creds and cfg.VPNBOOK_EMBED_CREDS)
     doc = {
         "project": "MSN Collector",
         "developer": "Mehdi Sedighinasab",
         "protocol": "OpenVPN",
         "last_update": iso(now),
         "total": len(active),
-        "registry_total": len(reg),
         "countries": sorted(countries.values(), key=lambda c: -c["count"]),
-        "sources": run_meta["sources"],
-        "configs": sorted(active.values(),
-                          key=lambda e: (e["country"], e["filename"])),
+        "configs": sorted(
+            [{"id": e["id"], "filename": e["filename"], "country": e["country"],
+              "country_code": e["country_code"], "flag": e["flag"],
+              "port": e["port"], "transport": e["transport"],
+              "server": e["server"], "collected_at": e["collected_at"]}
+             for e in active.values()],
+            key=lambda e: (e["country"], e["filename"])),
     }
     save_json(os.path.join(ROOT, cfg.OPENVPN_JSON_FILE), doc)
-    # byte-exact copy of the repo-level JSON ships inside the main ZIP too
+    # byte-exact copy of the repo-level JSON ships inside the ZIP too
     with open(os.path.join(ROOT, cfg.OPENVPN_JSON_FILE), "rb") as fh:
         json_bytes = fh.read()
 
-    # ---------- mehdisedighinasab-vpnbook.zip ----------
-    vb_files = vpnbook_zip_files(active, creds)
-    vb_path = os.path.join(ROOT, cfg.VPNBOOK_ZIP_FILE)
-    if vb_files:
-        manifest_vb = {k: sha_hex(v.decode("utf-8", "replace"))
-                       for k, v in vb_files.items()}
-        if state.get("manifest_vpnbook") != manifest_vb or not os.path.exists(vb_path):
-            build_zip(vb_path, vb_files)
-            state["manifest_vpnbook"] = manifest_vb
-            run_meta["vpnbook_zip_rebuilt"] = True
-
-    # ---------- mehdisedighinasab-openvpn.zip ----------
-    embed = bool(creds and cfg.VPNBOOK_EMBED_CREDS)
-    main_files = {}
+    # ---------- openvpn/<name>.ovpn — one standalone file per config ---------
+    # credentials are embedded inside the .ovpn text itself, so every single
+    # file works on its own when downloaded individually.
+    ov_dir = os.path.join(ROOT, cfg.OPENVPN_DIR)
+    os.makedirs(ov_dir, exist_ok=True)
+    wanted = {}
     for e in active.values():
-        path = (f"{cfg.VPNBOOK_DIR_IN_ZIP}/{e['filename']}"
-                if e.get("vpnbook_id") else e["filename"])
         content = e["config"]
         if e.get("vpnbook_id") and embed:
             content = inject_inline_creds(content, creds["username"],
                                           creds["password"])
-        main_files[path] = content.encode("utf-8")
-    # metadata travels with the package (self-contained; only when configs exist
-    # — with zero configs the previous zips stay untouched, per spec)
-    if main_files:
+        wanted[e["filename"]] = content.encode("utf-8")
+    for name, data in wanted.items():
+        with open(os.path.join(ov_dir, name), "wb") as f:
+            f.write(data)
+    for stale in sorted(set(os.listdir(ov_dir)) - set(wanted)):
+        os.remove(os.path.join(ov_dir, stale))
+
+    # ---------- openvpn.zip — ONE merged package, no per-source folders ------
+    for legacy in cfg.LEGACY_ZIP_FILES:            # drop the old branded zips
+        p = os.path.join(ROOT, legacy)
+        if os.path.exists(p):
+            os.remove(p)
+    if wanted:                                     # zero configs -> keep old zip
+        main_files = dict(wanted)
         main_files[cfg.OPENVPN_JSON_FILE] = json_bytes
-    if creds and cfg.VPNBOOK_EMBED_CREDS and any(k.startswith(cfg.VPNBOOK_DIR_IN_ZIP)
-                                                 for k in main_files):
-        main_files[f"{cfg.VPNBOOK_DIR_IN_ZIP}/{cfg.CREDENTIALS_FILE}"] = (
-            f"{creds['username']}\n{creds['password']}\n").encode()
-        main_files[f"{cfg.VPNBOOK_DIR_IN_ZIP}/VPNBOOK-README.txt"] = VPNBOOK_README.encode()
-        main_files[f"{cfg.VPNBOOK_DIR_IN_ZIP}/SECURITY-WARNING.txt"] = SECURITY_WARNING.encode()
-    main_path = os.path.join(ROOT, cfg.OPENVPN_ZIP_FILE)
-    manifest_main = {k: sha_hex(v.decode("utf-8", "replace")) for k, v in main_files.items()}
-    if main_files and (state.get("manifest") != manifest_main
-                       or not os.path.exists(main_path)):
-        build_zip(main_path, main_files)
-        state["manifest"] = manifest_main
-        run_meta["main_zip_rebuilt"] = True
-    # if nothing valid was found: previous zips stay untouched (spec rule)
+        main_files["README.txt"] = OPENVPN_README.encode("utf-8")
+        main_path = os.path.join(ROOT, cfg.OPENVPN_ZIP_FILE)
+        manifest_main = {k: sha_hex(v.decode("utf-8", "replace"))
+                         for k, v in main_files.items()}
+        if state.get("manifest") != manifest_main or not os.path.exists(main_path):
+            build_zip(main_path, main_files)
+            state["manifest"] = manifest_main
+            run_meta["main_zip_rebuilt"] = True
+    # if nothing valid was found: previous zip stays untouched (spec rule)
 
     # ---------- last_update + state ----------
     with open(os.path.join(ROOT, cfg.OPENVPN_LASTUPD_FILE), "w",
@@ -739,37 +716,28 @@ def write_outputs(state, creds, run_meta):
 
 # ------------------------------------------------------------------ texts
 
-VPNBOOK_README = """VPNBook — MSN Collector package
+OPENVPN_README = """MSN Collector — OpenVPN package
 ================================
-Username and password are already embedded inside every .ovpn file
-(<auth-user-pass> block, OpenVPN 2.4+). Just import and connect —
+Every .ovpn file in this package is standalone: wherever a login is
+required, the username and password are already embedded inside the file
+itself (<auth-user-pass> block, OpenVPN 2.4+). Just import and connect —
 no manual login is needed.
 
-Older OpenVPN clients: keep vpnbook_credentials.txt next to the .ovpn
-file and change the line `auth-user-pass` to:
-    auth-user-pass vpnbook_credentials.txt
+Files are also available individually (openvpn/<name>.ovpn), and the
+metadata of all servers lives in openvpn.json.
 
-The password changes every 1-2 weeks — re-download the package when
+Shared credentials rotate every 1-2 weeks — re-download the package when
 connections stop working.
-"""
-
-SECURITY_WARNING = """⚠️ SECURITY WARNING | هشدار امنیتی
-====================================
-This package contains SHARED, PUBLICLY KNOWN VPNBook credentials.
-Anyone with this file can use the same account.
-- Do NOT use these configs for sensitive or private traffic.
-- Credentials rotate every 1-2 weeks; they may stop working anytime.
-- انتشار عمومی این فایل یعنی همه رمز را می‌دانند — برای مصرف عادی باشد.
 """
 
 AUTH_REQUIRED = """AUTH REQUIRED
 =============
 Credentials could not be fetched automatically this run.
-Get the current username/password from https://www.vpnbook.com/freevpn
-and either type it on connect or create vpnbook_credentials.txt:
+The affected configs need a username/password on connect, or you can
+create a file next to the .ovpn file:
     line 1: username
     line 2: password
-and set `auth-user-pass vpnbook_credentials.txt` in the .ovpn file.
+and set `auth-user-pass that-file` in the .ovpn file.
 """
 
 
@@ -914,7 +882,7 @@ def main():
     print(f"[✓] done in {dur}s — new: {n_new} (vpnbook {n_vb}), "
           f"duplicates: {n_dup}, invalid: {n_inv}")
     print(f"[✓] outputs: {cfg.OPENVPN_JSON_FILE}, {cfg.OPENVPN_ZIP_FILE}, "
-          f"{cfg.VPNBOOK_ZIP_FILE}")
+          f"{cfg.OPENVPN_DIR}/<name>.ovpn")
     return 0
 
 

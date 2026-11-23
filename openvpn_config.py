@@ -44,12 +44,15 @@ VPNBOOK_TIMEOUT = 30            # seconds per HTTP request
 # All names are openvpn-prefixed so they can never collide with the
 # existing outputs (all.txt, stats.json, wireguard*.txt, ...).
 OPENVPN_JSON_FILE   = "openvpn.json"
-OPENVPN_ZIP_FILE    = "mehdisedighinasab-openvpn.zip"
-VPNBOOK_ZIP_FILE    = "mehdisedighinasab-vpnbook.zip"
+OPENVPN_ZIP_FILE    = "openvpn.zip"          # single merged package (no source branding)
+OPENVPN_DIR         = "openvpn"              # per-file downloads: openvpn/<name>.ovpn
 OPENVPN_STATE_FILE  = "openvpn_state.json"
 OPENVPN_LASTUPD_FILE = "openvpn_last_update.txt"
-VPNBOOK_DIR_IN_ZIP  = "VPNBook"   # sub-folder inside the main ZIP
-CREDENTIALS_FILE    = "vpnbook_credentials.txt"   # inside the VPNBook folder
+VPNBOOK_ZIP_FILE    = "mehdisedighinasab-vpnbook.zip"   # legacy — deleted on run
+VPNBOOK_DIR_IN_ZIP  = "VPNBook"   # legacy — no longer used
+CREDENTIALS_FILE    = "vpnbook_credentials.txt"   # legacy — no longer used
+LEGACY_ZIP_FILES    = ("mehdisedighinasab-openvpn.zip",
+                       "mehdisedighinasab-vpnbook.zip")  # removed by the collector
 
 # ------------------------------------------------------------------ policy
 FRESHNESS_HOURS = float(os.environ.get("OPENVPN_FRESHNESS_HOURS", "24"))

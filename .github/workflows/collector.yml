@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      OK_BUDGET_SEC: "600"   # cap outlinekeys key-page fetching per cycle (cache is committed, so progress carries over)
+      OK_BUDGET_SEC: "300"   # cap outlinekeys key-page fetching per cycle (cache is committed, so progress carries over)
     steps:
       - uses: actions/checkout@v4
 
@@ -25,21 +25,23 @@ jobs:
         with:
           python-version: "3.11"
 
+      # `timeout` bounds every collector so the commit step ALWAYS runs
+      # even when one source site stalls — data keeps flowing every 2h.
       - name: Run V2Ray collector
         continue-on-error: true
-        run: python collector.py
+        run: timeout 20m python -u collector.py
 
       - name: Run plain proxy collector (publicvpnlist.com)
         continue-on-error: true
-        run: python plain_proxy_collector.py
+        run: timeout 10m python -u plain_proxy_collector.py
 
       - name: Run MTProto collector (channels + proxybolt.link + WireGuard)
         continue-on-error: true
-        run: python mtproto_collector.py
+        run: timeout 12m python -u mtproto_collector.py
 
       - name: Run OpenVPN collector (channels + VPNBook)
         continue-on-error: true
-        run: python openvpn_collector.py
+        run: timeout 12m python -u openvpn_collector.py
 
       - name: Commit and push
         run: |
