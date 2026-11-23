@@ -1,0 +1,13 @@
+# ============================================================
+#  MSN Collector — OpenVPN Channels
+#  کانال‌های تلگرامی که کانفیگ OpenVPN می‌گذارند — یک کانال در هر خط
+#  عدد جلوی هر کانال «تعداد فایل ovpn، تعداد جدید» است و خودکار آپدیت می‌شود
+#  برای دانلود پیوست‌های .ovpn باید متغیرهای MTProto تنظیم شوند (README-OPENVPN.md)
+#  Edit freely: one @channel per line (lines with # are ignored)
+# ============================================================
+
+@super_Config_fast
+@ConfigWireguard
+@newconfig7
+@pro_nic
+@vasl_bashim

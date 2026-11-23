@@ -1,0 +1,18 @@
+# ============================================================
+#  MSN Collector — WireGuard Channels
+#  کانال‌های تلگرامی که کانفیگ وایرگارد می‌گذارند — یک کانال در هر خط
+#  عدد جلوی هر کانال «تعداد کانفیگ» است و خودکار آپدیت می‌شود
+#  Edit freely: one @channel per line (lines with # are ignored)
+# ============================================================
+
+@ConfigWireguard  # 0 configs
+@WireVpnGuard  # 0 configs
+@KIng_network7  # 0 configs
+@DeltaKroneckerFreedom  # 0 configs
+@TechPeyman  # 0 configs
+@v2cnf  # 0 configs
+@Paradise_Of_Freedom  # 0 configs
+@ipgenreator  # 0 configs
+@ProxySkull  # 0 configs
+@proSSH  # 0 configs
+@six_gango  # 0 configs

@@ -1,0 +1,53 @@
+name: MSN Collector
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"   # every 2 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collector
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run V2Ray collector
+        continue-on-error: true
+        run: python collector.py
+
+      - name: Run plain proxy collector (publicvpnlist.com)
+        continue-on-error: true
+        run: python plain_proxy_collector.py
+
+      - name: Run MTProto collector (channels + proxybolt.link)
+        continue-on-error: true
+        run: python mtproto_collector.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "msn-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "auto-update: $(date -u '+%Y-%m-%d %H:%M') UTC" && git push)
+
+      - name: Mirror push to GitFlic (optional)
+        continue-on-error: true
+        run: |
+          if [ -z "${{ secrets.GITFLIC_TOKEN }}" ]; then
+            echo "GITFLIC_TOKEN secret not set — skipping GitFlic mirror"
+            exit 0
+          fi
+          git remote add gitflic "https://mehdisedighinasab:${{ secrets.GITFLIC_TOKEN }}@gitflic.ru/project/mehdisedighinasab/msn-collector.git" 2>/dev/null || true
+          git push -q --force gitflic HEAD:master && echo "MIRRORED to GitFlic"

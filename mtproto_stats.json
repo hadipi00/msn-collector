@@ -1,0 +1,98 @@
+{
+  "last_update": "2026-11-23 14:05:42 UTC",
+  "duration_sec": 125.4,
+  "channels_ok": 10,
+  "channels_failed": 0,
+  "failed_channels": [],
+  "raw_proxies": 4596,
+  "unique_proxies": 1918,
+  "duplicates_removed": 2678,
+  "alive_proxies": 1433,
+  "kinds": {
+    "mtproto": 1433
+  },
+  "channel_stats": {
+    "proxybolt.link": {
+      "total": 789,
+      "alive": 777
+    },
+    "mtproxy4free": {
+      "total": 435,
+      "alive": 319
+    },
+    "mtpproxy": {
+      "total": 180,
+      "alive": 32
+    },
+    "ProxyMTProto": {
+      "total": 151,
+      "alive": 133
+    },
+    "TProxyRU": {
+      "total": 113,
+      "alive": 31
+    },
+    "TelMTProto": {
+      "total": 106,
+      "alive": 88
+    },
+    "mtproto_proxy_russia": {
+      "total": 106,
+      "alive": 91
+    },
+    "webproxy": {
+      "total": 103,
+      "alive": 93
+    },
+    "MTProtoProxies": {
+      "total": 81,
+      "alive": 6
+    },
+    "Myporoxy": {
+      "total": 1,
+      "alive": 0
+    },
+    "vnespiska": {
+      "total": 0,
+      "alive": 0
+    }
+  },
+  "wireguard_configs": 0,
+  "wg_channels_ok": 11,
+  "wg_channels_failed": 0,
+  "wg_channel_stats": {
+    "ConfigWireguard": {
+      "total": 0
+    },
+    "WireVpnGuard": {
+      "total": 0
+    },
+    "KIng_network7": {
+      "total": 0
+    },
+    "DeltaKroneckerFreedom": {
+      "total": 0
+    },
+    "TechPeyman": {
+      "total": 0
+    },
+    "v2cnf": {
+      "total": 0
+    },
+    "Paradise_Of_Freedom": {
+      "total": 0
+    },
+    "ipgenreator": {
+      "total": 0
+    },
+    "ProxySkull": {
+      "total": 0
+    },
+    "proSSH": {
+      "total": 0
+    },
+    "six_gango": {
+      "total": 0
+    }
+  }
+}

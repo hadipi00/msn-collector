@@ -1,0 +1,20 @@
+# ============================================================
+#  MSN MTProto Collector — Telegram Channels
+#  این فایل را ویرایش کنید: هر خط یک کانال تلگرام (@نام یا لینک t.me)
+#  خط‌هایی که با # شروع می‌شوند نادیده گرفته می‌شوند
+#  عدد جلوی هر کانال «تعداد پروکسی، تعداد زنده» است و خودکار بعد از هر چرخه آپدیت می‌شود — دستی ویرایش نکنید
+#  Edit this file: one Telegram channel per line (@name or t.me link, # = comment)
+#  The count after each channel (N proxies, M live) is auto-updated every run
+# ============================================================
+
+@vnespiska  # 0 proxies, 0 live
+@MTProtoProxies  # 81 proxies, 6 live
+@ProxyMTProto  # 151 proxies, 133 live
+@TelMTProto  # 106 proxies, 88 live
+@mtpproxy  # 180 proxies, 32 live
+@TProxyRU  # 113 proxies, 31 live
+@mtproxy4free  # 435 proxies, 319 live
+@mtproto_proxy_russia  # 106 proxies, 91 live
+@webproxy  # 103 proxies, 93 live
+
+@Myporoxy  # 1 proxies, 0 live

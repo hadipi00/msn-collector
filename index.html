@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MSN Collector — کانفیگ‌های رایگان VPN | آپدیت هر ۲ ساعت</title>
+<meta name="description" content="کلکسیونر خودکار کانفیگ‌های رایگان: VLESS، VMess، Trojan، Shadowsocks، TUIC، Hysteria2، MTProto و پراکسی‌های خام — آپدیت خودکار هر ۲ ساعت">
+<style>
+@font-face{font-family:'Vazirmatn';font-style:normal;font-weight:400 800;font-display:swap;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn[wght].woff2') format('woff2 supports variations'),url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn[wght].woff2') format('woff2-variations')}
+:root{
+  --bg:#04060f; --bg2:#080c1a;
+  --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --tx:#e8ecf6; --tx2:#9aa7bd; --tx3:#5d6b85;
+  --cy:#22d3ee; --vi:#8b5cf6; --pk:#ec4899; --gr:#34d399;
+  --grad:linear-gradient(90deg,var(--cy),var(--vi) 55%,var(--pk));
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--tx);
+  font-family:'Vazirmatn','Segoe UI',Tahoma,sans-serif;
+  overflow-x:hidden; line-height:1.7;
+}
+::selection{background:rgba(139,92,246,.45)}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#1d2740;border-radius:9px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ===== background FX ===== */
+#bgfx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.16;z-index:0;pointer-events:none;animation:drift 26s ease-in-out infinite alternate}
+.blob.b1{width:56vmax;height:56vmax;background:var(--vi);top:-18vmax;left:-12vmax}
+.blob.b2{width:44vmax;height:44vmax;background:var(--cy);bottom:-16vmax;right:-10vmax;animation-delay:-8s}
+.blob.b3{width:34vmax;height:34vmax;background:var(--pk);top:38%;left:44%;animation-delay:-15s;opacity:.10}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(6vmax,4vmax) scale(1.12)}}
+.grid-ov{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%)}
+
+.wrap{position:relative;z-index:2;max-width:1180px;margin-inline:auto;padding-inline:clamp(1rem,4vw,2rem)}
+
+/* ===== nav ===== */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(4,6,15,.72);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin-inline:auto;padding:.8rem clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:1rem}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.05rem;text-decoration:none;color:var(--tx)}
+.logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:.95rem;color:#fff;box-shadow:0 0 18px rgba(139,92,246,.55)}
+.nav-links{display:flex;gap:.4rem;margin-inline-start:auto;align-items:center}
+.nav-links a{color:var(--tx2);text-decoration:none;font-size:.86rem;padding:.42rem .8rem;border-radius:10px;transition:.2s}
+.nav-links a:hover{color:var(--tx);background:var(--glass2)}
+.gh-btn{display:flex;align-items:center;gap:.45rem;border:1px solid var(--line2);border-radius:10px;padding:.42rem .85rem;font-size:.86rem;color:var(--tx)!important}
+.gh-btn svg{width:16px;height:16px;fill:currentColor}
+@media(max-width:760px){.nav-links a.hidem{display:none}}
+
+/* ===== hero ===== */
+header.hero{padding:clamp(3.2rem,9vw,6.5rem) 0 clamp(2.4rem,6vw,4rem);text-align:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(34,211,238,.35);background:rgba(34,211,238,.07);color:#a5f3fc;font-size:.82rem;padding:.4rem 1rem;border-radius:99px;margin-bottom:1.4rem}
+.badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+h1{font-size:clamp(2.1rem,7vw,4.2rem);font-weight:800;line-height:1.25;letter-spacing:-.02em}
+h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(139,92,246,.35))}
+.sub{color:var(--tx2);font-size:clamp(.95rem,2.4vw,1.12rem);max-width:640px;margin:1rem auto 0}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin-top:2rem}
+.chip{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:.75rem 1.25rem;min-width:126px;backdrop-filter:blur(8px)}
+.chip .n{font-size:clamp(1.15rem,3vw,1.5rem);font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chip .t{font-size:.75rem;color:var(--tx2);margin-top:.15rem}
+.cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem}
+.btn{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;cursor:pointer;border-radius:13px;padding:.78rem 1.6rem;font-size:.95rem;font-weight:700;font-family:inherit;transition:.22s;border:1px solid transparent}
+.btn-pri{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(139,92,246,.35)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,92,246,.5)}
+.btn-sec{background:var(--glass);border-color:var(--line2);color:var(--tx)}
+.btn-sec:hover{background:var(--glass2);transform:translateY(-2px)}
+.upd{margin-top:1.6rem;color:var(--tx3);font-size:.8rem}
+.upd b{color:var(--tx2)}
+
+/* ===== sections ===== */
+section{padding:clamp(2.6rem,6vw,4.2rem) 0}
+.sec-head{margin-bottom:1.8rem}
+.sec-head .kick{color:var(--cy);font-size:.8rem;font-weight:700;letter-spacing:.14em}
+.sec-head h2{font-size:clamp(1.45rem,4vw,2.1rem);font-weight:800;margin-top:.3rem}
+.sec-head p{color:var(--tx2);font-size:.92rem;margin-top:.4rem;max-width:620px}
+
+/* ===== sub cards ===== */
+.sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem}
+.scard{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem;transition:.25s;position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--pc,var(--grad));opacity:.85}
+.scard:hover{border-color:var(--line2);transform:translateY(-3px);background:var(--glass2)}
+.scard .nm{display:flex;align-items:center;gap:.55rem;font-weight:700;font-size:.95rem}
+.scard .nm .ic{width:26px;height:26px;border-radius:8px;background:var(--pc,var(--vi));display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff;flex-shrink:0}
+.scard .cnt{font-size:.74rem;color:var(--tx2)}
+.scard .cnt b{color:var(--cy);font-weight:800}
+.scard .acts{display:flex;gap:.45rem;margin-top:.2rem}
+.act{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:10px;padding:.5rem .6rem;font-size:.8rem;font-weight:700;cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--tx);text-decoration:none;font-family:inherit;transition:.2s;text-align:center}
+.act:hover{background:var(--glass2)}
+.act.copy{border-color:rgba(34,211,238,.4);color:#a5f3fc}
+.act.copy:hover{background:rgba(34,211,238,.12)}
+.act.dl{border-color:rgba(139,92,246,.4);color:#c4b5fd}
+.act.dl:hover{background:rgba(139,92,246,.12)}
+
+/* ===== explorer ===== */
+.explorer{background:var(--glass);border:1px solid var(--line);border-radius:22px;overflow:hidden;backdrop-filter:blur(10px)}
+.tabs{display:flex;gap:.4rem;padding:.9rem;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
+.tab{white-space:nowrap;border:1px solid var(--line);background:transparent;color:var(--tx2);border-radius:11px;padding:.5rem .95rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:.45rem;transition:.2s}
+.tab .tdot{width:8px;height:8px;border-radius:50%;background:var(--pc);box-shadow:0 0 8px var(--pc)}
+.tab:hover{color:var(--tx);border-color:var(--line2)}
+.tab.on{background:var(--glass2);color:var(--tx);border-color:var(--pc)}
+.tab .tnum{font-size:.7rem;color:var(--tx3);background:rgba(255,255,255,.06);padding:.05rem .4rem;border-radius:6px}
+.tab.on .tnum{color:var(--cy)}
+.toolbar{display:flex;gap:.6rem;align-items:center;padding:.9rem;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.search{flex:1;min-width:200px;display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:11px;padding:.5rem .9rem}
+.search input{background:transparent;border:none;outline:none;color:var(--tx);font-family:inherit;font-size:.87rem;width:100%}
+.search svg{width:15px;height:15px;stroke:var(--tx3);flex-shrink:0}
+.tinfo{font-size:.8rem;color:var(--tx2)}
+.tinfo b{color:var(--cy)}
+.rows{max-height:520px;overflow-y:auto}
+.row{display:flex;align-items:center;gap:.7rem;padding:.55rem .95rem;border-bottom:1px solid rgba(255,255,255,.045);transition:.15s}
+.row:hover{background:rgba(255,255,255,.035)}
+.row .idx{font-size:.68rem;color:var(--tx3);min-width:3.2rem;direction:ltr;text-align:left;flex-shrink:0;font-family:ui-monospace,monospace}
+.row .cfg{flex:1;min-width:0;direction:ltr;text-align:left;font-family:ui-monospace,'Cascadia Code',Consolas,monospace;font-size:.76rem;color:#c7d2e5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .flag{font-size:.95rem;flex-shrink:0}
+.row .btns{display:flex;gap:.3rem;flex-shrink:0}
+.icb{border:1px solid var(--line2);background:transparent;color:var(--tx2);border-radius:8px;padding:.32rem .55rem;font-size:.7rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.18s;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
+.icb:hover{color:var(--tx);background:var(--glass2)}
+.icb.go{color:#a5f3fc;border-color:rgba(34,211,238,.4)}
+.empty{padding:2.4rem;text-align:center;color:var(--tx3);font-size:.88rem}
+.more-wrap{padding:.8rem;text-align:center;border-top:1px solid var(--line)}
+
+/* ===== openvpn ===== */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.9rem}
+.ovcard{background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;transition:.25s}
+.ovcard:hover{transform:translateY(-3px);border-color:var(--line2)}
+.ovcard h3{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:.5rem}
+.ovcard p{color:var(--tx2);font-size:.82rem;margin:.5rem 0 .9rem}
+.ovcard .meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
+.tag{font-size:.72rem;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:8px;padding:.22rem .55rem;color:var(--tx2)}
+.flaggrid{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.fpill{display:inline-flex;align-items:center;gap:.35rem;background:var(--glass);border:1px solid var(--line);border-radius:9px;padding:.3rem .6rem;font-size:.78rem;color:var(--tx2)}
+.fpill b{color:var(--tx)}
+
+/* ===== countries ===== */
+.cbar{display:grid;gap:.55rem}
+.crow{display:flex;align-items:center;gap:.7rem}
+.crow .cflag{font-size:1.05rem;width:1.6rem;text-align:center}
+.crow .cname{font-size:.83rem;color:var(--tx2);min-width:92px}
+.crow .track{flex:1;height:9px;background:rgba(255,255,255,.06);border-radius:9px;overflow:hidden}
+.crow .fill{height:100%;border-radius:9px;background:var(--grad);width:0;transition:width 1s ease}
+.crow .cnum{font-size:.76rem;color:var(--cy);min-width:3.6rem;text-align:left;direction:ltr}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}
+
+/* ===== guide ===== */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem}
+.gcard{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
+.gcard .step{width:34px;height:34px;border-radius:11px;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#fff;margin-bottom:.7rem;box-shadow:0 0 16px rgba(139,92,246,.4)}
+.gcard h3{font-size:.95rem;font-weight:800;margin-bottom:.4rem}
+.gcard p{color:var(--tx2);font-size:.83rem}
+.gcard code{direction:ltr;display:inline-block;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:7px;padding:.1rem .45rem;font-size:.78rem;color:#a5f3fc;font-family:ui-monospace,monospace}
+
+/* ===== footer ===== */
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;text-align:center;color:var(--tx3);font-size:.82rem}
+footer .frow{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+footer a{color:var(--tx2);text-decoration:none}
+footer a:hover{color:var(--cy)}
+footer .heart{color:var(--pk)}
+
+/* toast */
+#toast{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;border:1px solid rgba(52,211,153,.5);color:#a7f3d0;padding:.6rem 1.3rem;border-radius:12px;font-size:.85rem;opacity:0;pointer-events:none;transition:.3s;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="grid-ov"></div>
+<canvas id="bgfx"></canvas>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#"><span class="dot">MSN</span> MSN&nbsp;Collector</a>
+    <div class="nav-links">
+      <a class="hidem" href="#subs">ساب‌ها</a>
+      <a class="hidem" href="#proto">پروتکل‌ها</a>
+      <a class="hidem" href="#ovpn">OpenVPN</a>
+      <a class="hidem" href="#stats">آمار</a>
+      <a class="hidem" href="#guide">راهنما</a>
+      <a class="gh-btn" id="ghRepo" href="https://github.com/hadipi00/msn-collector" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        گیت‌هاب
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="badge"><span class="pulse"></span> آپدیت خودکار هر ۲ ساعت روی سرورهای گیت‌هاب</div>
+  <h1>دریای <span class="grad">کانفیگ‌های رایگان</span><br>در یک جمع</h1>
+  <p class="sub">VLESS، VMess، Trojan، Shadowsocks، TUIC، Hysteria2، MTProto و پراکسی‌های خام — هر ۲ ساعت از ۹۰+ منبع جمع‌آوری، تست و تازه می‌شود. یک لینک ساب بگیرید، همه را داشته باشید.</p>
+  <div class="hero-stats">
+    <div class="chip"><div class="n" id="stTotal">—</div><div class="t">کانفیگ زنده</div></div>
+    <div class="chip"><div class="n" id="stV2ray">—</div><div class="t">V2Ray / ۷ پروتکل</div></div>
+    <div class="chip"><div class="n" id="stMtproto">—</div><div class="t">MTProto تلگرام</div></div>
+    <div class="chip"><div class="n" id="stPlain">—</div><div class="t">پراکسی خام</div></div>
+    <div class="chip"><div class="n" id="stOvpn">—</div><div class="t">OpenVPN</div></div>
+  </div>
+  <div class="cta">
+    <a class="btn btn-pri" id="btnSub" href="sub.txt" download="msn_sub.txt">⬇ دانلود ساب کامل (Base64)</a>
+    <a class="btn btn-sec" href="#proto">مرور تک‌تک پروتکل‌ها ↓</a>
+  </div>
+  <div class="upd">آخرین به‌روزرسانی: <b id="lastUpd">در حال دریافت…</b></div>
+</header>
+
+<main class="wrap">
+
+<section id="subs" class="reveal">
+  <div class="sec-head">
+    <div class="kick">SUBSCRIPTION</div>
+    <h2>لینک‌های اشتراک</h2>
+    <p>این لینک‌ها را در کلاینت (v2rayNG، Nekoray، Hiddify، Streisand و…) وارد کنید تا خودکار تازه شوند؛ یا فایل را کپی و دانلود کنید.</p>
+  </div>
+  <div class="sub-grid" id="subGrid"></div>
+</section>
+
+<section id="proto" class="reveal">
+  <div class="sec-head">
+    <div class="kick">EXPLORER</div>
+    <h2>مرور تک‌تک پروتکل‌ها</h2>
+    <p>هر پروتکل را باز کنید، جستجو کنید، تک‌تک کانفیگ‌ها را کپی کنید یا کل فایل را دانلود بگیرید.</p>
+  </div>
+  <div class="explorer">
+    <div class="tabs" id="tabs"></div>
+    <div class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="جستجو در کانفیگ‌ها… (IP، کشور، پورت)">
+      </div>
+      <div class="tinfo">نمایش <b id="shown">۰</b> از <b id="curTotal">—</b></div>
+      <button class="act copy" id="copyAll" type="button" style="flex:0">کپی همه</button>
+      <a class="act dl" id="dlCur" href="#" download style="flex:0">⬇ فایل</a>
+    </div>
+    <div class="rows" id="rows"></div>
+    <div class="more-wrap"><button class="btn btn-sec" id="more" type="button" style="padding:.55rem 1.4rem;font-size:.85rem">نمایش بیشتر</button></div>
+  </div>
+</section>
+
+<section id="ovpn" class="reveal">
+  <div class="sec-head">
+    <div class="kick">OPENVPN</div>
+    <h2>OpenVPN — فایل‌های آماده</h2>
+    <p>بسته‌های Zip با ۴۰ سرور از ۵ کشور، همراه با نام کاربری و رمز عبور — آماده برای OpenVPN Connect.</p>
+  </div>
+  <div class="ov-grid" id="ovGrid"></div>
+</section>
+
+<section id="stats" class="reveal">
+  <div class="sec-head">
+    <div class="kick">GEOMETRY</div>
+    <h2>پراکندگی جغرافیایی سرورها</h2>
+    <p>توزیع کشور سرورهای V2Ray (بر پایه GeoIP) و سرورهای OpenVPN.</p>
+  </div>
+  <div class="two-col">
+    <div class="explorer" style="padding:1.2rem">
+      <h3 style="font-size:.92rem;font-weight:800;margin-bottom:1rem">🌐 سرورهای V2Ray</h3>
+      <div class="cbar" id="cbarV2"></div>
+    </div>
+    <div class="explorer" style="padding:1.2rem">
+      <h3 style="font-size:.92rem;font-weight:800;margin-bottom:1rem">🗺 سرورهای OpenVPN</h3>
+      <div class="cbar" id="cbarOv"></div>
+    </div>
+  </div>
+</section>
+
+<section id="guide" class="reveal">
+  <div class="sec-head">
+    <div class="kick">GUIDE</div>
+    <h2>راهنمای سریع اتصال</h2>
+  </div>
+  <div class="guide-grid">
+    <div class="gcard"><div class="step">۱</div><h3>لینک ساب را بگیرید</h3><p>از بخش <b>لینک‌های اشتراک</b> دکمهٔ کپی ساب کامل را بزنید؛ آدرس <code>https://hadipi00.github.io/msn-collector/sub.txt</code> همیشه تازه‌ترین نسخه است.</p></div>
+    <div class="gcard"><div class="step">۲</div><h3>در کلاینت اضافه کنید</h3><p>در v2rayNG / Hiddify / Nekoray گزینهٔ <b>Subscription → Add</b> را بزنید و آدرس را جای‌گذاری کنید. همهٔ پروتکل‌ها خودکار وارد می‌شوند.</p></div>
+    <div class="gcard"><div class="step">۳</div><h3>MTProto تلگرام</h3><p>در بخش پروتکل‌ها، تب <b>MTProto</b> را باز کنید؛ هر کانفیگ دکمهٔ <code>اتصال</code> دارد که مستقیم پروکسی را در تلگرام فعال می‌کند.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="frow">
+    <a href="https://github.com/hadipi00/msn-collector" target="_blank" rel="noopener">GitHub Repository</a>
+    <span>·</span>
+    <a href="https://gitflic.ru/project/mehdisedighinasab/msn-collector" target="_blank" rel="noopener">GitFlic Mirror</a>
+    <span>·</span>
+    <a href="sources.txt" target="_blank">منابع جمع‌آوری</a>
+  </div>
+  <div>MSN Collector — گردآوری و تست خودکار هر ۲ ساعت با GitHub Actions</div>
+  <div>طراحی و توسعه با <span class="heart">♥</span> برای مهدی صدیقینسب</div>
+</footer>
+
+<div id="toast">کپی شد ✓</div>
+
+<script>
+'use strict';
+/* ================= data config ================= */
+const P = [
+ {id:'vless',    name:'VLESS',        file:'vless.txt',        b64:'vless_b64.txt',        color:'#22d3ee', src:'v2ray'},
+ {id:'vmess',    name:'VMess',        file:'vmess.txt',        b64:'vmess_b64.txt',        color:'#8b5cf6', src:'v2ray'},
+ {id:'trojan',   name:'Trojan',       file:'trojan.txt',       b64:'trojan_b64.txt',       color:'#ec4899', src:'v2ray'},
+ {id:'ss',       name:'Shadowsocks',  file:'ss.txt',           b64:'ss_b64.txt',           color:'#f59e0b', src:'v2ray'},
+ {id:'ssr',      name:'SSR',          file:'ssr.txt',          b64:'ssr_b64.txt',          color:'#10b981', src:'v2ray'},
+ {id:'tuic',     name:'TUIC',         file:'tuic.txt',         b64:'tuic_b64.txt',         color:'#f43f5e', src:'v2ray'},
+ {id:'hysteria2',name:'Hysteria2',    file:'hysteria2.txt',    b64:'hysteria2_b64.txt',    color:'#a3e635', src:'v2ray'},
+ {id:'mtproto',  name:'MTProto',      file:'mtproto.txt',      color:'#3b82f6', src:'mtproto'},
+ {id:'http',     name:'HTTP',         file:'plain_http.txt',   color:'#94a3b8', src:'plain'},
+ {id:'socks5',   name:'SOCKS5',       file:'plain_socks5.txt', color:'#e879f9', src:'plain'},
+ {id:'socks4',   name:'SOCKS4',       file:'plain_socks4.txt', color:'#64748b', src:'plain'},
+];
+const SUBS = [
+ {name:'ساب کامل (همه پروتکل‌ها)', file:'sub.txt', icon:'★', color:'linear-gradient(135deg,#22d3ee,#ec4899)', key:'alive'},
+ {name:'لیست خام همه (متن ساده)', file:'all.txt', icon:'≡', color:'#64748b', key:'alive'},
+ {name:'ساب VLESS',  file:'vless_b64.txt',  icon:'V', color:'#22d3ee', key:'vless'},
+ {name:'ساب VMess',  file:'vmess_b64.txt',  icon:'M', color:'#8b5cf6', key:'vmess'},
+ {name:'ساب Trojan', file:'trojan_b64.txt', icon:'T', color:'#ec4899', key:'trojan'},
+ {name:'ساب Shadowsocks', file:'ss_b64.txt', icon:'S', color:'#f59e0b', key:'ss'},
+ {name:'ساب SSR', file:'ssr_b64.txt', icon:'R', color:'#10b981', key:'ssr'},
+ {name:'ساب TUIC', file:'tuic_b64.txt', icon:'U', color:'#f43f5e', key:'tuic'},
+ {name:'ساب Hysteria2', file:'hysteria2_b64.txt', icon:'H', color:'#a3e635', key:'hysteria2'},
+];
+const FA_COUNTRY = {CA:'کانادا',US:'آمریکا',DE:'آلمان',NL:'هلند',GB:'انگلیس',RU:'روسیه',SG:'سنگاپور',IR:'ایران',FR:'فرانسه',SE:'سوئد',HK:'هنگ‌کنگ',FI:'فنلاند',BZ:'بلیز',JP:'ژاپن',CR:'کاستاریکا',PL:'لهستان',TR:'ترکیه',CY:'قبرس',SC:'سیشل',KZ:'قزاقستان',ES:'اسپانیا',IT:'ایتالیا',KR:'کره',AT:'اتریش',EE:'استونی',IN:'هند',AU:'استرالیا',UA:'اوکراین',CH:'سوئیس',CN:'چین',BR:'برزیل',MX:'مکزیک',RO:'رومانی',LT:'لتونی',LV:'لتونی',BG:'بلغارستان',CZ:'چک',PT:'پرتغال',IE:'ایرلند',IL:'اسرائیل',AE:'امارات',SA:'عربستان',NO:'نروژ',DK:'دانمارک',IS:'ایسلند',MD:'مولداوی',RS:'صربستان',HU:'مجارستان',GR:'یونان',CL:'شیلی',AR:'آرژانتین',CO:'کلمبیا',ZA:'آفریقای جنوبی',NZ:'نیوزیلند',TW:'تایوان',VN:'ویتنام',TH:'تایلند',MY:'مالزی',ID:'اندونزی',PH:'فیلیپین',IQ:'عراق',GE:'گرجستان',AM:'ارمنستان',AZ:'آذربایجان',BY:'بلاروس',SK:'اسلواکی',SI:'اسلوونی',HR:'کرواتی',BA:'بوسنی',AL:'آلبانی',MK:'مقدونیه',MT:'مالت',LU:'لوکزامبورگ',BE:'بلژیک',MO:'ماکائو',PA:'پاناما',PE:'پرو',UY:'اروگوئه',EC:'اکوادور'};
+const flagOf = c => c && /^[A-Za-z]{2}$/.test(c) ? String.fromCodePoint(...[...c.toUpperCase()].map(x=>0x1F1E6+x.charCodeAt(0)-65)) : '🌐';
+const cache = {}; let cur = P[0].id, shown = 0, CHUNK = 100, filtered = null;
+const $ = s => document.querySelector(s);
+const faNum = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+
+/* ================= fetch helpers ================= */
+async function jget(u){ const r = await fetch(u + '?v=' + Date.now()); if(!r.ok) throw new Error(u); return r.json(); }
+async function tget(u){ const r = await fetch(u + '?v=' + Date.now()); if(!r.ok) throw new Error(u); return (await r.text()).trim(); }
+
+/* ================= toast & copy ================= */
+let toastT;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('show'), 1600); }
+async function copyTxt(s, msg){ try { await navigator.clipboard.writeText(s); } catch(e){ const ta=document.createElement('textarea'); ta.value=s; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } toast(msg || 'کپی شد ✓'); }
+
+/* ================= particles ================= */
+(function(){
+  const cv = $('#bgfx'), ctx = cv.getContext('2d');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let W, H, pts = [];
+  function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight;
+    pts = Array.from({length: Math.min(90, W/14)}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, r:Math.random()*1.6+.5}));
+  }
+  size(); addEventListener('resize', size);
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    for (const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fillStyle='rgba(160,190,255,.5)'; ctx.fill(); }
+    for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy;
+      if(d<12000){ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle='rgba(120,140,220,'+(.13*(1-d/12000))+')'; ctx.stroke(); } }
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ================= reveal on scroll ================= */
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ================= counters ================= */
+function countUp(el, n){ const t0 = performance.now(), dur = 1200;
+  (function f(t){ const k = Math.min(1,(t-t0)/dur); el.textContent = faNum(Math.floor(n*(1-Math.pow(1-k,3)))); if(k<1) requestAnimationFrame(f); })(t0); }
+
+/* ================= boot: stats ================= */
+let S = {}, MT = {}, PL = {}, OV = {};
+function applyStats(){
+  const alive = S.alive_configs || 0, mt = MT.alive_proxies || 0, pl = PL.alive_proxies || 0, ov = OV.total || 0;
+  countUp($('#stV2ray'), alive);
+  countUp($('#stMtproto'), mt);
+  countUp($('#stPlain'), pl);
+  countUp($('#stOvpn'), ov);
+  countUp($('#stTotal'), alive + mt + pl + ov);
+  P.forEach(p => {
+    const el = document.querySelector('[data-num="'+p.id+'"]');
+    if (!el) return;
+    const n = p.src==='v2ray' ? (S.protocols||{})[p.id] : p.src==='mtproto' ? mt : ((PL.kinds||{})[p.id]||0);
+    if (n != null) el.textContent = faNum(n);
+  });
+  renderCountries();
+  renderOv();
+}
+
+function parseTs(s){ if(!s) return null; s = String(s).trim().replace(/^OpenVPN:\s*/,'').replace(' UTC','').replace(' +00:00',''); return new Date(s.replace(' ','T') + 'Z'); }
+function relUpd(){ const d = parseTs(S.last_update || MT.last_update || PL.last_update);
+  if (!d || isNaN(d)) { $('#lastUpd').textContent = '—'; return; }
+  const m = Math.floor((Date.now() - d.getTime())/60000);
+  $('#lastUpd').textContent = m < 1 ? 'همین حالا' : m < 60 ? faNum(m) + ' دقیقه پیش' : m < 1440 ? faNum(Math.floor(m/60)) + ' ساعت پیش' : faNum(Math.floor(m/1440)) + ' روز پیش';
+}
+
+/* ================= sub cards ================= */
+function renderSubs(){
+  $('#subGrid').innerHTML = SUBS.map(s => {
+    const n = s.key==='alive' ? (S.alive_configs||0) : ((S.protocols||{})[s.key]);
+    return `<div class="scard" style="--pc:${s.color}">
+      <div class="nm"><span class="ic" style="${s.color.startsWith('linear')?'background:'+s.color:''}">${s.icon}</span> ${s.name}</div>
+      <div class="cnt">${n!=null ? 'تعداد: <b>'+faNum(n)+'</b> کانفیگ' : 'فایل Base64'}</div>
+      <div class="acts">
+        <button class="act copy" onclick="copyUrl('${s.file}')">کپی لینک ساب</button>
+        <a class="act dl" href="${s.file}" download="${s.file}">⬇ دانلود</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+function copyUrl(f){ copyTxt(location.origin + location.pathname.replace(/[^/]*$/,'') + f, 'لینک ساب کپی شد ✓'); }
+
+/* ================= tabs & explorer ================= */
+function renderTabs(){
+  $('#tabs').innerHTML = P.map((p,i) => `<button class="tab${i===0?' on':''}" data-p="${p.id}" style="--pc:${p.color}">
+    <span class="tdot"></span>${p.name}<span class="tnum" data-num="${p.id}">—</span></button>`).join('');
+  document.querySelectorAll('.tab').forEach(t => t.onclick = () => pick(t.dataset.p));
+}
+
+function pick(id){
+  cur = id;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.p === id));
+  const p = P.find(x => x.id === id);
+  $('#dlCur').href = p.file; $('#dlCur').download = p.file;
+  $('#q').value = '';
+  loadProto(p);
+}
+
+async function loadProto(p){
+  const rows = $('#rows');
+  rows.innerHTML = '<div class="empty">در حال دریافت ' + p.name + '…</div>';
+  try {
+    if (!cache[p.id]) {
+      const t = await tget(p.file);
+      cache[p.id] = t ? t.split('\n').map(x => x.trim()).filter(Boolean) : [];
+      const el = document.querySelector('[data-num="'+p.id+'"]');
+      if (el) el.textContent = faNum(cache[p.id].length);
+    }
+    showAll();
+  } catch(e){ rows.innerHTML = '<div class="empty">⚠ دریافت فایل ' + p.file + ' ممکن نشد — بعداً دوباره امتحان کنید.</div>'; }
+}
+
+function applyFilter(){
+  const p = P.find(x => x.id === cur), q = $('#q').value.trim().toLowerCase(), all = cache[cur] || [];
+  filtered = q ? all.filter(l => l.toLowerCase().includes(q)) : all;
+  $('#curTotal').textContent = faNum(filtered.length);
+  shown = 0;
+  $('#rows').innerHTML = '';
+  pushRows();
+}
+
+function pushRows(){
+  const p = P.find(x => x.id === cur), slice = filtered.slice(shown, shown + CHUNK);
+  const html = slice.map((l,i) => {
+    const frag = decodeURIComponent((l.split('#')[1] || l.split('@')[1] || '')).trim();
+    const m = frag.match(/([\u{1F1E6}-\u{1F1FF}]{2})|([A-Za-z]{2})\s*$/u);
+    const fl = m ? (m[1] || flagOf(m[2])) : '';
+    const isMt = p.src === 'mtproto';
+    return `<div class="row"><span class="idx">${faNum(shown+i+1)}</span>
+      <span class="flag">${fl}</span>
+      <span class="cfg" title="${l.replace(/"/g,'&quot;')}">${l.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+      <span class="btns">
+        ${isMt ? `<a class="icb go" href="${l.replace(/&/g,'&amp;')}" title="اتصال در تلگرام">اتصال</a>` : ''}
+        <button class="icb" onclick="copyTxt(this.closest('.row').querySelector('.cfg').textContent,'کانفیگ کپی شد ✓')">کپی</button>
+      </span></div>`;
+  }).join('');
+  $('#rows').insertAdjacentHTML('beforeend', html);
+  shown += slice.length;
+  $('#shown').textContent = faNum(shown);
+  $('#more').style.display = shown < filtered.length ? '' : 'none';
+}
+
+function showAll(){ applyFilter(); }
+
+/* ================= openvpn ================= */
+function renderOv(){
+  const cs = (OV.countries || []).slice(0, 8);
+  $('#ovGrid').innerHTML = `
+    <div class="ovcard">
+      <h3>📦 بستهٔ OpenVPN مخصوص</h3>
+      <p>کانفیگ‌های .ovpn گردآوری‌شده از کانال‌های تلگرام، آمادهٔ ایمپورت در OpenVPN Connect.</p>
+      <div class="meta"><span class="tag">🖥 ${faNum(OV.total||0)} سرور</span><span class="tag">🏳 ${cs.length} کشور</span></div>
+      <div class="acts"><a class="act dl" href="mehdisedighinasab-openvpn.zip" download>⬇ دانلود Zip</a></div>
+      <div class="flaggrid">${cs.map(c => `<span class="fpill">${c.flag||flagOf(c.country_code)} <b>${faNum(c.count)}</b></span>`).join('')}</div>
+    </div>
+    <div class="ovcard">
+      <h3>🔓 بستهٔ VPNBook</h3>
+      <p>کانفیگ‌های رایگان VPNBook با احراز هویت — همراه با نام کاربری و رمز عبور داخل بسته.</p>
+      <div class="meta"><span class="tag">🔄 آپدیت خودکار</span><span class="tag">🔐 با کرنشیال</span></div>
+      <div class="acts"><a class="act dl" href="mehdisedighinasab-vpnbook.zip" download>⬇ دانلود Zip</a></div>
+    </div>`;
+  const ov = $('#cbarOv'), mx = Math.max(...cs.map(c => c.count||0), 1);
+  ov.innerHTML = cs.map(c => `<div class="crow">
+      <span class="cflag">${c.flag||flagOf(c.country_code)}</span>
+      <span class="cname">${FA_COUNTRY[c.country_code] || c.country || c.country_code}</span>
+      <span class="track"><span class="fill" data-w="${(c.count/mx*100).toFixed(1)}"></span></span>
+      <span class="cnum">${faNum(c.count)}</span></div>`).join('');
+  requestAnimationFrame(() => ov.querySelectorAll('.fill').forEach(f => f.style.width = f.dataset.w + '%'));
+}
+
+/* ================= countries (v2ray) ================= */
+function renderCountries(){
+  const cs = Object.entries(S.countries || {}).sort((a,b) => b[1]-a[1]).slice(0, 12);
+  const mx = cs.length ? cs[0][1] : 1;
+  $('#cbarV2').innerHTML = cs.map(([c,n]) => `<div class="crow">
+      <span class="cflag">${flagOf(c)}</span>
+      <span class="cname">${FA_COUNTRY[c] || c}</span>
+      <span class="track"><span class="fill" data-w="${(n/mx*100).toFixed(1)}"></span></span>
+      <span class="cnum">${faNum(n)}</span></div>`).join('');
+  requestAnimationFrame(() => $('#cbarV2').querySelectorAll('.fill').forEach(f => f.style.width = f.dataset.w + '%'));
+}
+
+/* ================= events ================= */
+$('#q').addEventListener('input', applyFilter);
+$('#more').onclick = pushRows;
+$('#copyAll').onclick = () => copyTxt((filtered || cache[cur] || []).join('\n'), 'همهٔ کانفیگ‌ها کپی شد ✓ (' + faNum((filtered||[]).length) + ')');
+
+/* ================= init ================= */
+(async function init(){
+  renderTabs();
+  renderSubs();
+  pick(P[0].id);
+  const jobs = [
+    jget('stats.json').then(d => { S = d; }).catch(()=>{}),
+    jget('mtproto_stats.json').then(d => { MT = d; }).catch(()=>{}),
+    jget('plain_stats.json').then(d => { PL = d; }).catch(()=>{}),
+    jget('openvpn.json').then(d => { OV = d; }).catch(()=>{}),
+  ];
+  await Promise.all(jobs);
+  applyStats();
+  relUpd(); setInterval(relUpd, 30000);
+  if (!S.last_update && !MT.last_update) toast('⚠ داده‌ها هنوز آماده نیستند');
+})();
+</script>
+</body>
+</html>

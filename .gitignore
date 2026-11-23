@@ -1,0 +1,20 @@
+# local caches (large, rebuilt automatically — never commit)
+outlinekeys_cache.json
+outlinekeys_cache.json.lock
+outlinekeys_cache.json.tmp
+outlinekeys_harvest.lock
+__pycache__/
+.scheduler.pid
+.scheduler.lock
+.last_cycle_ts
+scheduler.log
+harvest.log
+.cache_pushed_size
+dbip-country-ipv4.csv
+dbip-country-ipv6.csv
+dbip-country-ipv4.csv.pkl
+dbip-country-ipv6.csv.pkl
+*.mmdb
+manual_run.log
+*_run.log
+full_cycle.log
