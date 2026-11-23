@@ -51,7 +51,8 @@
 | دانلود تکی هر فایل | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn/<نام-فایل>.ovpn` — هر فایل مستقل و با احراز هویت داخل خودش |
 
 > فقط پست‌های ۲۴ ساعت اخیر جمع می‌شود و پیوست‌های `.ovpn` با MTProto رسمی دانلود می‌شوند
-> (راهنما: `README-OPENVPN.md`).
+> (راهنما: `README-OPENVPN.md`). همهٔ کانفیگ‌های OpenVPN قبل از انتشار alive-check می‌شوند
+> (TCP connect یا پاکت handshake واقعی OpenVPN برای UDP) و کانفیگ‌های قطع از خروجی حذف می‌شوند.
 
 > ⚠️ فایل پروتکلی که در اجرای فعلی کانفیگ زنده نداشته باشد، ساخته نمی‌شود (مثلاً اگر هیچ TUIC زنده‌ای نباشد، `tuic.txt` وجود ندارد).
 > ⚠️ Protocol files with zero alive configs in the current run are not created.
@@ -119,6 +120,7 @@ All configs are auto-renamed with the server's country flag + ISO code: `@mehdis
 | `wireguard_conf.txt` | همان کانفیگ‌ها به صورت بلوک .conf برای اپ رسمی WireGuard / AmneziaWG |
 | `openvpn.json` | متادیتای کانفیگ‌های OpenVPN (کشور/سرور/پورت/تاریخ) |
 | `openvpn.zip` + `openvpn/<name>.ovpn` | بستهٔ واحد همهٔ .ovpn ها + تک‌فایل‌ها برای دانلود جدا — نام‌گذاری mehdisedighinasab-COUNTRY-N-TCP/UDP-PORT |
+| `pings.json` | پینگ (ms) هر سرور زندهٔ همهٔ پروتکل‌ها به صورت `host:port` — سایت همین را به‌عنوان برچسب پینگ نمایش می‌دهد |
 | `stats.json` | آمار آخرین اجرای V2Ray |
 | `mtproto_stats.json` | آمار آخرین اجرای MTProto/WireGuard |
 | `plain_stats.json` | آمار آخرین اجرای کالکتور پروکسی‌های ساده |

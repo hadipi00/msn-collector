@@ -148,6 +148,10 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .ovsearch{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;color:var(--tx);font-family:inherit;font-size:.8rem;outline:none;margin-bottom:.7rem}
 .ovsearch::placeholder{color:var(--tx3)}
 .ovrow .act.dl{padding:.3rem .75rem;font-size:.72rem;flex-shrink:0}
+.ping{font-size:.66rem;padding:.15rem .45rem;border-radius:7px;white-space:nowrap;flex-shrink:0;font-weight:700}
+.pg{color:#4ade80;background:rgba(74,222,128,.12)}
+.pm{color:#fbbf24;background:rgba(251,191,36,.12)}
+.pr{color:#f87171;background:rgba(248,113,113,.12)}
 
 /* ===== countries ===== */
 .cbar{display:grid;gap:.55rem}
@@ -472,6 +476,7 @@ function pushRows(){
     return `<div class="row"><span class="idx">${faNum(shown+i+1)}</span>
       <span class="flag">${fl}</span>
       <span class="cfg" title="${l.replace(/"/g,'&quot;')}">${l.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+      ${pingBadge(hostport(l))}
       <span class="btns">
         ${isMt ? `<a class="icb go" href="${l.replace(/&/g,'&amp;')}" title="اتصال در تلگرام">اتصال</a>` : ''}
         <button class="icb" onclick="copyTxt(this.closest('.row').querySelector('.cfg').textContent,'کانفیگ کپی شد ✓')">کپی</button>
@@ -490,6 +495,7 @@ function ovRenderList(list){
   $('#ovList').innerHTML = list.length ? list.map(e => `<div class="ovrow">
       <span class="cflag">${e.flag||flagOf(e.country_code)}</span>
       <div class="ovinfo"><b>${e.filename||''}</b><span>${FA_COUNTRY[e.country_code] || e.country || ''} · ${(e.transport||'').toUpperCase()} ${faNum(e.port||'')}</span></div>
+      ${pingBadge((e.server||'') + ':' + (e.port||''))}
       <a class="act dl" href="openvpn/${encodeURIComponent(e.filename||'')}" download title="دانلود این فایل">⬇ دانلود</a></div>`).join('')
     : '<div style="color:var(--tx3);font-size:.78rem;padding:.6rem .2rem">موردی یافت نشد</div>';
 }
@@ -546,6 +552,27 @@ $('#more').onclick = pushRows;
 $('#copyAll').onclick = () => copyTxt((filtered || cache[cur] || []).join('\n'), 'همهٔ کانفیگ‌ها کپی شد ✓ (' + faNum((filtered||[]).length) + ')');
 
 /* ================= init ================= */
+let PING = {};
+function hostport(l){
+  try{
+    if(l.startsWith('vmess://')){
+      const o = JSON.parse(atob(l.slice(8).replace(/-/g,'+').replace(/_/g,'/')));
+      return o.add ? o.add + ':' + o.port : null;
+    }
+    if(l.startsWith('tg://')){
+      const u = new URL(l);
+      return (u.searchParams.get('server')||'') + ':' + (u.searchParams.get('port')||'');
+    }
+    const m = l.match(/@([^@\/:\s]+):(\d+)/) || l.match(/:\/\/([^@\/:\s]+):(\d+)/);
+    return m ? m[1] + ':' + m[2] : null;
+  }catch(e){ return null; }
+}
+function pingBadge(hp){
+  const ms = hp && PING[hp];
+  if(!ms) return '';
+  const cls = ms < 400 ? 'pg' : ms < 1200 ? 'pm' : 'pr';
+  return `<span class="ping ${cls}">● ${faNum(ms)}ms</span>`;
+}
 (async function init(){
   renderTabs();
   renderSubs();
@@ -555,6 +582,7 @@ $('#copyAll').onclick = () => copyTxt((filtered || cache[cur] || []).join('\n'),
     jget('mtproto_stats.json').then(d => { MT = d; }).catch(()=>{}),
     jget('plain_stats.json').then(d => { PL = d; }).catch(()=>{}),
     jget('openvpn.json').then(d => { OV = d; }).catch(()=>{}),
+    jget('pings.json').then(d => { PING = d; }).catch(()=>{}),
   ];
   await Promise.all(jobs);
   applyStats();

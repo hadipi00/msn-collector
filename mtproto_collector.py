@@ -469,6 +469,7 @@ def write_wg_outputs(wg_items, meta):
 
 async def _check(server, port, sem):
     async with sem:
+        t0 = time.monotonic()
         try:
             w = None
             try:
@@ -481,9 +482,30 @@ async def _check(server, port, sem):
                         await asyncio.wait_for(w.wait_closed(), timeout=1.0)
                     except Exception:
                         pass
-            return True
+            return True, int((time.monotonic() - t0) * 1000)
         except Exception:
-            return False
+            return False, None
+
+
+PINGS_FILE = os.path.join(ROOT, "pings.json")
+
+
+def _save_pings(pings_new):
+    """Merge fresh {server:port: latency_ms} into the shared pings.json."""
+    try:
+        with open(PINGS_FILE, encoding="utf-8") as f:
+            merged = json.load(f)
+    except Exception:
+        merged = {}
+    merged.update(pings_new)
+    try:
+        tmp = PINGS_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp, PINGS_FILE)
+        print(f"[+] pings.json: {len(merged)} server:port entries")
+    except Exception as e:
+        print(f"[x] pings.json write failed: {type(e).__name__}: {e}")
 
 
 def run_alive_checks(proxies):
@@ -506,8 +528,12 @@ def run_alive_checks(proxies):
             el = time.time() - t0
             print(f"    ... {min(i + BATCH, total)}/{total} checked "
                   f"({min(i + BATCH, total) / max(el, 0.001):.0f}/s, {el:.0f}s)")
-        for (h, p), ok in zip(keys, results):
+        for (h, p), (ok, ms) in zip(keys, results):
             pairs[(h, p)] = ok
+        pings = {f"{h}:{p}": ms for (h, p), (ok, ms) in zip(keys, results)
+                 if ok and ms is not None}
+        if pings:
+            _save_pings(pings)
         return pairs
 
     return asyncio.run(run())

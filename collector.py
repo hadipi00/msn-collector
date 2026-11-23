@@ -810,16 +810,17 @@ def dedupe(items):
 
 
 async def _check(host, port, sem):
-    """TCP connect check. Returns the resolved peer IP on success, else None
-    (the IP feeds the GeoIP country lookup for naming)."""
+    """TCP connect check. Returns (resolved_ip_or_None, latency_ms_or_None) —
+    the IP feeds the GeoIP country lookup for naming, the ms feeds pings.json."""
     async with sem:
         w = None
+        t0 = time.monotonic()
         try:
             _r, w = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=ALIVE_TIMEOUT)
             peer = w.get_extra_info("peername")
-            return peer[0] if peer else None
+            return (peer[0] if peer else None), int((time.monotonic() - t0) * 1000)
         except Exception:
-            return None
+            return None, None
         finally:
             if w:
                 try:
@@ -827,6 +828,69 @@ async def _check(host, port, sem):
                     await asyncio.wait_for(w.wait_closed(), timeout=1.0)
                 except Exception:
                     pass
+
+
+PINGS_FILE = os.path.join(ROOT, "pings.json")
+
+
+def _save_pings(pings_new):
+    """Merge fresh {host:port: latency_ms} into the shared pings.json — every
+    collector upserts its own protocols and keeps the others' entries."""
+    try:
+        with open(PINGS_FILE, encoding="utf-8") as f:
+            merged = json.load(f)
+    except Exception:
+        merged = {}
+    merged.update(pings_new)
+    try:
+        tmp = PINGS_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp, PINGS_FILE)
+        print(f"[+] pings.json: {len(merged)} host:port entries")
+    except Exception as e:
+        print(f"[x] pings.json write failed: {type(e).__name__}: {e}")
+
+
+PVL_PROTOS = ("vless", "vmess", "trojan", "shadowsocks", "hysteria2")
+PVL_EXPORT = ("https://publicvpnlist.com/exports/protocol.php"
+              "?protocol={proto}&format=json")
+
+
+def fetch_publicvpnlist_datasets():
+    """publicvpnlist.com VPN-config datasets (VLESS/VMess/Trojan/SS/Hy2).
+    Since 2026-09-18 the site gates these behind a free 24-hour key obtained
+    through a reCAPTCHA, so unattended access is normally impossible (HTTP
+    401 access_required). This tries the direct export endpoints every run —
+    if access ever opens (or a key is exported via PVL_ACCESS_KEY), the URIs
+    join the normal pipeline: dedupe + GeoIP naming + alive-check."""
+    uris = []
+    headers = {"User-Agent": UA, "Accept": "application/json"}
+    key = os.environ.get("PVL_ACCESS_KEY", "").strip()
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+    for proto in PVL_PROTOS:
+        try:
+            req = urllib.request.Request(
+                PVL_EXPORT.format(proto=proto), headers=headers)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read().decode("utf-8", "replace"))
+        except Exception as e:
+            print(f"[i] publicvpnlist {proto} dataset unavailable "
+                  f"({type(e).__name__} {getattr(e, 'code', '')})")
+            continue
+        n0 = len(uris)
+        recs = (data.get("records") or data.get("servers")
+                or data.get("proxies") or [])
+        for rec in recs:
+            if not isinstance(rec, dict):
+                continue
+            u = (rec.get("uri") or rec.get("link") or rec.get("config")
+                 or rec.get("v2rayng_url") or "")
+            if isinstance(u, str) and u.startswith(proto + "://"):
+                uris.append(u)
+        print(f"[+] publicvpnlist {proto}: {len(uris) - n0} configs")
+    return uris
 
 
 def run_alive_checks(items):
@@ -852,8 +916,13 @@ def run_alive_checks(items):
             done += len(chunk)
             el = time.time() - t0
             print(f"    ... {done}/{total} checked ({done / max(el, 0.001):.0f}/s, {el:.0f}s)")
-        for (h, p), ok in zip(keys, results):
+        pings = {}
+        for (h, p), (ok, ms) in zip(keys, results):
             pairs[(h, p)] = ok
+            if ok and ms is not None:
+                pings[f"{h}:{p}"] = ms
+        if pings:
+            _save_pings(pings)
         return pairs
 
     return asyncio.run(run())
@@ -994,6 +1063,15 @@ def main():
         items.extend(got)
     uniq_all = dedupe(items)
     dups_removed = len(items) - len(uniq_all)
+    pvl = fetch_publicvpnlist_datasets()     # gated today (401) — skips silently
+    if pvl:
+        pvl_got = dedupe(extract_from_text("\n".join(pvl)))
+        items.extend(pvl_got)
+        per_source["https://publicvpnlist.com/exports/"] = pvl_got
+        source_stats["https://publicvpnlist.com/exports/"] = {"total": len(pvl_got)}
+        uniq_all = dedupe(items)
+        dups_removed = len(items) - len(uniq_all)
+        print(f"[+] publicvpnlist datasets: {len(pvl)} raw, {len(pvl_got)} unique")
     uniq = uniq_all[:MAX_TEST]
     print(f"[i] sources ok/failed: {ok}/{fail} | raw configs: {len(items)} | "
           f"duplicates removed: {dups_removed} | unique: {len(uniq)}")

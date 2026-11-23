@@ -28,11 +28,14 @@ Outputs (all new files — nothing existing is touched or rewritten):
 Pure Python 3 stdlib + optional Telethon (only when MTProto creds are set).
 Never imports collector.py / mtproto_collector.py — fully isolated.
 """
+import asyncio
 import hashlib
 import html as html_mod
 import json
 import os
+import random
 import re
+import struct
 import subprocess
 import sys
 import time
@@ -606,6 +609,142 @@ class Collector:
         self.stats["by_source"][source][key] += 1
 
 
+# ------------------------------------------------------------------ alive
+
+OV_TCP_TIMEOUT = 4.0        # seconds per TCP connect
+OV_UDP_TIMEOUT = 3.0        # seconds to wait for the OpenVPN handshake reply
+
+REMOTE_RE = re.compile(r"(?m)^\s*remote\s+(\S+)\s+(\d+)\s*$")
+PROTO_RE = re.compile(r"(?m)^\s*proto\s+(udp4?|tcp4?)\s*$")
+TLS_SECRET_RE = re.compile(r"(?i)<tls-(?:auth|crypt)>")
+
+
+def _udp_reset_packet():
+    """Minimal OpenVPN P_CONTROL_HARD_RESET_CLIENT_V2 — real servers answer
+    with the server hard-reset (opcode 0x40) unless tls-auth/crypt drops it."""
+    return (b"\x38" + struct.pack(">Q", random.getrandbits(64))
+            + struct.pack(">I", 1))
+
+
+async def _ov_check(host, port, transport, has_tls_secret, sem):
+    """Returns latency_ms when the server answered, None when it did not.
+    UDP configs that carry a tls-auth/tls-crypt secret are left untested (the
+    plain handshake probe would be silently dropped) and stay in the list."""
+    async with sem:
+        if has_tls_secret:
+            return -1                                    # untested — keep
+        t0 = time.monotonic()
+        if transport == "tcp":
+            w = None
+            try:
+                w = await asyncio.wait_for(
+                    asyncio.open_connection(host, port), timeout=OV_TCP_TIMEOUT)
+                return int((time.monotonic() - t0) * 1000)
+            except Exception:
+                return None
+            finally:
+                if w:
+                    try:
+                        w.close()
+                    except Exception:
+                        pass
+        loop = asyncio.get_running_loop()
+        fut = loop.create_future()
+
+        class _P(asyncio.DatagramProtocol):
+            def datagram_received(self, data, addr):
+                if not fut.done():
+                    fut.set_result(data)
+
+            def error_received(self, exc):
+                if not fut.done() and isinstance(exc, Exception):
+                    fut.set_exception(exc)
+
+        tr = None
+        try:
+            tr, _pr = await asyncio.wait_for(
+                loop.create_datagram_endpoint(_P, remote_addr=(host, port)),
+                timeout=OV_UDP_TIMEOUT)
+            tr.sendto(_udp_reset_packet())
+            data = await asyncio.wait_for(fut, timeout=OV_UDP_TIMEOUT)
+            return int((time.monotonic() - t0) * 1000) if data else None
+        except Exception:
+            return None
+        finally:
+            if tr:
+                try:
+                    tr.close()
+                except Exception:
+                    pass
+
+
+PINGS_FILE = os.path.join(ROOT, "pings.json")
+
+
+def _save_pings(pings_new):
+    """Merge fresh {host:port: latency_ms} into the shared pings.json."""
+    try:
+        with open(PINGS_FILE, encoding="utf-8") as f:
+            merged = json.load(f)
+    except Exception:
+        merged = {}
+    merged.update(pings_new)
+    try:
+        tmp = PINGS_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp, PINGS_FILE)
+        print(f"[+] pings.json: {len(merged)} entries")
+    except Exception as e:
+        print(f"[x] pings.json write failed: {type(e).__name__}: {e}")
+
+
+def run_openvpn_alive_checks(entries):
+    """entries: {hash: entry}. Returns {filename: latency_ms or -1 (untested)
+    or None (dead)}. Dead configs are dropped from publication this run."""
+    probes = {}
+    for e in entries.values():
+        rm = REMOTE_RE.search(e["config"])
+        pm = PROTO_RE.search(e["config"])
+        if not rm or not pm:
+            probes[e["filename"]] = (None, None, None, False)
+            continue
+        transport = pm.group(1).rstrip("4")
+        probes[e["filename"]] = (rm.group(1), int(rm.group(2)), transport,
+                                 bool(TLS_SECRET_RE.search(e["config"])))
+    sem = asyncio.Semaphore(300)
+
+    async def run():
+        items = list(probes.items())
+        print(f"[i] openvpn alive-check on {len(items)} configs")
+        results = {}
+        BATCH = 1000
+        for i in range(0, len(items), BATCH):
+            chunk = items[i:i + BATCH]
+            out = await asyncio.gather(*[
+                _ov_check(h, p, t, tls, sem)
+                for _fn, (h, p, t, tls) in chunk])
+            results.update({fn: ms for (fn, _pr), ms in zip(chunk, out)})
+        return results
+
+    results = asyncio.run(run())
+    pings, alive, dead = {}, {}, 0
+    for fn, ms in results.items():
+        h, p, _t, _tls = probes[fn]
+        if ms is None:
+            dead += 1
+            alive[fn] = None
+        else:
+            alive[fn] = ms                       # -1 = untested, >0 = ms
+            if ms > 0 and h and p:
+                pings[f"{h}:{p}"] = ms
+    if pings:
+        _save_pings(pings)
+    n_alive = sum(1 for v in alive.values() if v is not None)
+    print(f"[i] openvpn alive: {n_alive} / {len(alive)} (dead: {dead})")
+    return alive
+
+
 # ------------------------------------------------------------------ outputs
 
 def prune_registry(state):
@@ -640,6 +779,11 @@ def write_outputs(state, creds, run_meta):
     active = {h: e for h, e in reg.items()
               if e.get("vpnbook_id")
               or (parse_iso(e["collected_at"]) or now) >= retention_cut}
+
+    # ---------- alive-check: only configs that actually answer get published --
+    alive = run_openvpn_alive_checks(active)
+    active = {h: e for h, e in active.items()
+              if alive.get(e["filename"]) is not None}
 
     # ---------- openvpn.json (no source fields, no config bodies) ------------
     countries = {}
