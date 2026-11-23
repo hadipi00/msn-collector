@@ -16,6 +16,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      OK_BUDGET_SEC: "600"   # cap outlinekeys key-page fetching per cycle (cache is committed, so progress carries over)
     steps:
       - uses: actions/checkout@v4
 
@@ -31,23 +33,18 @@ jobs:
         continue-on-error: true
         run: python plain_proxy_collector.py
 
-      - name: Run MTProto collector (channels + proxybolt.link)
+      - name: Run MTProto collector (channels + proxybolt.link + WireGuard)
         continue-on-error: true
         run: python mtproto_collector.py
+
+      - name: Run OpenVPN collector (channels + VPNBook)
+        continue-on-error: true
+        run: python openvpn_collector.py
 
       - name: Commit and push
         run: |
           git config user.name "msn-bot"
           git config user.email "bot@users.noreply.github.com"
+          [ -f outlinekeys_cache.json ] && git add -f outlinekeys_cache.json || true
           git add -A
           git diff --cached --quiet || (git commit -m "auto-update: $(date -u '+%Y-%m-%d %H:%M') UTC" && git push)
-
-      - name: Mirror push to GitFlic (optional)
-        continue-on-error: true
-        run: |
-          if [ -z "${{ secrets.GITFLIC_TOKEN }}" ]; then
-            echo "GITFLIC_TOKEN secret not set — skipping GitFlic mirror"
-            exit 0
-          fi
-          git remote add gitflic "https://mehdisedighinasab:${{ secrets.GITFLIC_TOKEN }}@gitflic.ru/project/mehdisedighinasab/msn-collector.git" 2>/dev/null || true
-          git push -q --force gitflic HEAD:master && echo "MIRRORED to GitFlic"

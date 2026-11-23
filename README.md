@@ -11,44 +11,44 @@
 
 | فرمت | لینک |
 |------|------|
-| Base64 — پیشنهادی برای v2rayNG / Hiddify / NekoBox | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=sub.txt` |
-| نرمال (متن ساده) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=all.txt` |
+| Base64 — پیشنهادی برای v2rayNG / Hiddify / NekoBox | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/sub.txt` |
+| نرمال (متن ساده) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/all.txt` |
 
 ### ساب هر پروتکل | Per-protocol subscriptions
 
 | پروتکل | نرمال (Plain) | Base64 |
 |--------|---------------|--------|
-| VLESS | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=vless.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=vless_b64.txt` |
-| VMess | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=vmess.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=vmess_b64.txt` |
-| Trojan | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=trojan.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=trojan_b64.txt` |
-| Shadowsocks | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=ss.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=ss_b64.txt` |
-| ShadowsocksR | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=ssr.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=ssr_b64.txt` |
-| Hysteria2 | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=hysteria2.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=hysteria2_b64.txt` |
-| TUIC | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=tuic.txt` | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=tuic_b64.txt` |
+| VLESS | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/vless.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/vless_b64.txt` |
+| VMess | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/vmess.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/vmess_b64.txt` |
+| Trojan | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/trojan.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/trojan_b64.txt` |
+| Shadowsocks | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/ss.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/ss_b64.txt` |
+| ShadowsocksR | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/ssr.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/ssr_b64.txt` |
+| Hysteria2 | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/hysteria2.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/hysteria2_b64.txt` |
+| TUIC | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/tuic.txt` | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/tuic_b64.txt` |
 
 ### 🔵 پروکسی تلگرام | Telegram MTProto / SOCKS5
 
 | ساب | لینک |
 |-----|------|
-| MTProto (tg://proxy) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mtproto.txt` |
-| SOCKS5 (tg://socks) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mtproto_socks.txt` |
-| همه با هم + Base64 | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mtproto_all.txt` |
+| MTProto (tg://proxy) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mtproto.txt` |
+| SOCKS5 (tg://socks) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mtproto_socks.txt` |
+| همه با هم + Base64 | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mtproto_all.txt` |
 
 ### 🛡️ WireGuard
 
 | ساب | لینک |
 |-----|------|
-| wireguard:// لینک (Hiddify / NekoBox / v2rayNG جدید) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=wireguard.txt` |
-| Base64 | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=wireguard_b64.txt` |
-| فایل کانفیگ .conf (اپ رسمی WireGuard / AmneziaWG) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=wireguard_conf.txt` |
+| wireguard:// لینک (Hiddify / NekoBox / v2rayNG جدید) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/wireguard.txt` |
+| Base64 | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/wireguard_b64.txt` |
+| فایل کانفیگ .conf (اپ رسمی WireGuard / AmneziaWG) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/wireguard_conf.txt` |
 
 ### 🔶 OpenVPN
 
 | خروجی | توضیح |
 |-------|-------|
-| `openvpn.json` | متادیتای کامل کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ، SHA256) — `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=openvpn.json` |
-| ZIP کامل | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mehdisedighinasab-openvpn.zip` |
-| ZIP مخصوص VPNBook (بدون ورود دستی) | `https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mehdisedighinasab-vpnbook.zip` |
+| `openvpn.json` | متادیتای کامل کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ، SHA256) — `https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn.json` |
+| ZIP کامل | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-openvpn.zip` |
+| ZIP مخصوص VPNBook (بدون ورود دستی) | `https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-vpnbook.zip` |
 
 > منابع: کانال‌های `openvpn_channels.txt` + VPNBook — فقط پست‌های ۲۴ ساعت اخیر جمع می‌شود و
 > پیوست‌های `.ovpn` با MTProto رسمی دانلود می‌شوند (راهنما: `README-OPENVPN.md`).

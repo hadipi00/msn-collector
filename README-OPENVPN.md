@@ -9,9 +9,9 @@ A purely additive module. Nothing from the existing pipeline was modified or tou
 
 | فایل | توضیح |
 |------|-------|
-| [`openvpn.json`](https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=openvpn.json) | متادیتای همه کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ، SHA256) — یک نسخه از آن داخل `mehdisedighinasab-openvpn.zip` هم هست |
-| [`mehdisedighinasab-openvpn.zip`](https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mehdisedighinasab-openvpn.zip) | همه کانفیگ‌های .ovpn + پوشه VPNBook + credentials + `openvpn.json` |
-| [`mehdisedighinasab-vpnbook.zip`](https://gitflic.ru/project/mehdisedighinasab/msn-collector/blob/raw?file=mehdisedighinasab-vpnbook.zip) | فقط کانفیگ‌های VPNBook — **بدون نیاز به ورود دستی** |
+| [`openvpn.json`](https://raw.githubusercontent.com/hadipi00/msn-collector/main/openvpn.json) | متادیتای همه کانفیگ‌های OpenVPN (کشور، سرور، پورت، تاریخ، SHA256) — یک نسخه از آن داخل `mehdisedighinasab-openvpn.zip` هم هست |
+| [`mehdisedighinasab-openvpn.zip`](https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-openvpn.zip) | همه کانفیگ‌های .ovpn + پوشه VPNBook + credentials + `openvpn.json` |
+| [`mehdisedighinasab-vpnbook.zip`](https://raw.githubusercontent.com/hadipi00/msn-collector/main/mehdisedighinasab-vpnbook.zip) | فقط کانفیگ‌های VPNBook — **بدون نیاز به ورود دستی** |
 | `openvpn_state.json` | وضعیت: آخرین Message ID هر کانال، رجیستری hashها، شماره‌گذاری |
 | `openvpn_last_update.txt` | زمان آخرین آپدیت |
 | `openvpn_channels.txt` | کانال‌های تلگرام OpenVPN — قابل ویرایش مثل بقیه فایل‌ها |

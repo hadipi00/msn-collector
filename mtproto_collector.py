@@ -454,17 +454,13 @@ def write_wg_outputs(wg_items, meta):
                 name += f"-{fl}{cc.upper()}"
         uris.append(wg_uri(p, name))
         blocks.append(wg_conf_text(p, name))
-    for f in [WG_FILE, WG_B64_FILE, WG_CONF_FILE]:
-        fp = os.path.join(ROOT, f)
-        if os.path.exists(fp):
-            os.remove(fp)
-    if uris:
-        with open(os.path.join(ROOT, WG_FILE), "w", encoding="utf-8") as f:
-            f.write("\n".join(uris) + "\n")
-        with open(os.path.join(ROOT, WG_B64_FILE), "w", encoding="utf-8") as f:
-            f.write(base64.b64encode("\n".join(uris).encode("utf-8", "replace")).decode() + "\n")
-        with open(os.path.join(ROOT, WG_CONF_FILE), "w", encoding="utf-8") as f:
-            f.write("\n\n".join(blocks) + "\n")
+    # always write (empty when none found) so README/site links never 404
+    with open(os.path.join(ROOT, WG_FILE), "w", encoding="utf-8") as f:
+        f.write("\n".join(uris) + "\n" if uris else "")
+    with open(os.path.join(ROOT, WG_B64_FILE), "w", encoding="utf-8") as f:
+        f.write(base64.b64encode("\n".join(uris).encode("utf-8", "replace")).decode() + "\n" if uris else "")
+    with open(os.path.join(ROOT, WG_CONF_FILE), "w", encoding="utf-8") as f:
+        f.write("\n\n".join(blocks) + "\n" if uris else "")
     meta["wireguard_configs"] = len(uris)
     return len(uris)
 
@@ -526,12 +522,11 @@ def write_outputs(alive, meta):
             os.remove(p)
     mt = [p["link"] for p in alive if p["kind"] == "mtproto"]
     sk = [p["link"] for p in alive if p["kind"] == "socks"]
-    if mt:
-        with open(os.path.join(ROOT, MTPROTO_FILE), "w", encoding="utf-8") as f:
-            f.write("\n".join(mt) + "\n")
-    if sk:
-        with open(os.path.join(ROOT, SOCKS_FILE), "w", encoding="utf-8") as f:
-            f.write("\n".join(sk) + "\n")
+    # always write mtproto/socks (empty when none found) so links never 404
+    with open(os.path.join(ROOT, MTPROTO_FILE), "w", encoding="utf-8") as f:
+        f.write("\n".join(mt) + "\n" if mt else "")
+    with open(os.path.join(ROOT, SOCKS_FILE), "w", encoding="utf-8") as f:
+        f.write("\n".join(sk) + "\n" if sk else "")
     with open(os.path.join(ROOT, ALL_FILE), "w", encoding="utf-8") as f:
         f.write("\n".join(mt + sk) + "\n")
     with open(os.path.join(ROOT, LASTUPD_FILE), "w", encoding="utf-8") as f:

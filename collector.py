@@ -24,7 +24,7 @@ import sys
 import time
 import urllib.request
 import urllib.parse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SOURCES_FILE = os.path.join(ROOT, "sources.txt")
@@ -46,6 +46,7 @@ OK_HOST = "outlinekeys.com"
 OK_CACHE = os.path.join(ROOT, "outlinekeys_cache.json")   # gitignored
 OK_LOCK = OK_CACHE + ".lock"
 OK_HARVEST = os.path.join(ROOT, "outlinekeys_harvest.lock")  # PID sentinel while full harvest runs
+OK_BUDGET_SEC = int(os.environ.get("OK_BUDGET_SEC", "0") or 0)  # cap key-page fetching per cycle (sec, 0=unlimited; CI sets 600)
 
 PROTO_FILE = {
     "vmess":     "vmess.txt",
@@ -722,15 +723,38 @@ def expand_outlinekeys(sitemap_url):
             s, html = _ok_fetch(u)
             return u, s, html
 
+        # Budget: cap this cycle's key-page fetching (OK_BUDGET_SEC, CI=600s).
+        # Progress is merged into the cache every 250 pages and the cache is
+        # committed by CI each run, so harvesting continues across cycles
+        # instead of restarting from zero on a fresh runner.
+        deadline = time.time() + OK_BUDGET_SEC if OK_BUDGET_SEC > 0 else None
+        done = 0
         with ThreadPoolExecutor(KEYPAGE_WORKERS) as ex:
-            for u, s, html in ex.map(work, todo):
-                if s == 200 and html is not None:
-                    entries[u] = _ok_extract(html)
-                elif s in (404, 410):
-                    entries[u] = None          # confirmed gone -> remember
-                # transient errors stay uncached -> retried next cycle
-        _ok_cache_merge(entries)
+            futs = {ex.submit(work, u): u for u in todo}
+            try:
+                for f in as_completed(futs):
+                    u = futs[f]
+                    try:
+                        s, html = f.result()
+                    except Exception:
+                        continue
+                    if s == 200 and html is not None:
+                        entries[u] = _ok_extract(html)
+                    elif s in (404, 410):
+                        entries[u] = None          # confirmed gone -> remember
+                    # transient errors stay uncached -> retried next cycle
+                    done += 1
+                    if done % 250 == 0:
+                        _ok_cache_merge(entries)
+                    if deadline and time.time() > deadline:
+                        for g in futs:
+                            g.cancel()             # queued pages -> next cycle
+                        break
+            finally:
+                _ok_cache_merge(entries)
         cache = _ok_cache_load()
+        if len(entries) < len(todo):
+            print(f"[i] outlinekeys: budget reached — {len(todo) - len(entries)} pages left for next cycle")
     uris = [cache[u] for u in pages if cache.get(u)]
     print(f"[i] outlinekeys: {len(uris)} keys available")
     # empty (not None) when the sitemap was fine but the cache is still being
