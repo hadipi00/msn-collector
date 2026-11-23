@@ -20,11 +20,12 @@ import json
 import os
 import re
 import ssl
+import socket
 import sys
 import time
 import urllib.request
 import urllib.parse
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait, FIRST_COMPLETED
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SOURCES_FILE = os.path.join(ROOT, "sources.txt")
@@ -724,18 +725,21 @@ def expand_outlinekeys(sitemap_url):
             return u, s, html
 
         # Budget: cap this cycle's key-page fetching (OK_BUDGET_SEC, CI=600s).
-        # Progress is merged into the cache every 250 pages and the cache is
-        # committed by CI each run, so harvesting continues across cycles
-        # instead of restarting from zero on a fresh runner.
+        # wait(timeout=20) is immune to dribbling responses that would starve
+        # as_completed (the exact hang that killed every CI run) — this phase
+        # can never outlive its budget.
         deadline = time.time() + OK_BUDGET_SEC if OK_BUDGET_SEC > 0 else None
         done = 0
-        with ThreadPoolExecutor(KEYPAGE_WORKERS) as ex:
-            futs = {ex.submit(work, u): u for u in todo}
-            try:
-                for f in as_completed(futs):
-                    u = futs[f]
+        ex = ThreadPoolExecutor(KEYPAGE_WORKERS)
+        try:
+            pending = {ex.submit(work, u) for u in todo}
+            end = deadline if deadline else time.time() + 6 * 3600
+            while pending and time.time() < end:
+                done_set, pending = wait(pending, timeout=20,
+                                         return_when=FIRST_COMPLETED)
+                for f in done_set:
                     try:
-                        s, html = f.result()
+                        u, s, html = f.result()
                     except Exception:
                         continue
                     if s == 200 and html is not None:
@@ -746,15 +750,15 @@ def expand_outlinekeys(sitemap_url):
                     done += 1
                     if done % 250 == 0:
                         _ok_cache_merge(entries)
-                    if deadline and time.time() > deadline:
-                        for g in futs:
-                            g.cancel()             # queued pages -> next cycle
-                        break
-            finally:
-                _ok_cache_merge(entries)
+            if pending:
+                print(f"[i] outlinekeys: budget reached — {len(pending)} pages left for next cycle")
+                for g in pending:
+                    g.cancel()                     # queued pages -> next cycle
+        finally:
+            _ok_cache_merge(entries)
+            # never wait for wedged page fetches on the deadline path
+            ex.shutdown(wait=False, cancel_futures=True)
         cache = _ok_cache_load()
-        if len(entries) < len(todo):
-            print(f"[i] outlinekeys: budget reached — {len(todo) - len(entries)} pages left for next cycle")
     uris = [cache[u] for u in pages if cache.get(u)]
     print(f"[i] outlinekeys: {len(uris)} keys available")
     # empty (not None) when the sitemap was fine but the cache is still being
@@ -762,7 +766,16 @@ def expand_outlinekeys(sitemap_url):
     return "\n".join(uris) if uris else ""
 
 
+FETCH_DEADLINE = 360      # hard cap on the whole source-fetch phase (seconds)
+
+
 def fetch_all(urls):
+    """Fetch every source concurrently with live per-URL progress and a hard
+    overall deadline — one slow or wedged source can no longer stall the run
+    (silently waiting here is what killed every CI run before)."""
+    t0 = time.time()
+    out = {}
+
     def work(u):
         try:
             if OK_HOST in u and u.rstrip("/").endswith(".xml"):
@@ -770,8 +783,29 @@ def fetch_all(urls):
             return (u, fetch(u))
         except Exception:
             return (u, None)
-    with ThreadPoolExecutor(FETCH_WORKERS) as ex:
-        return list(ex.map(work, urls))
+
+    ex = ThreadPoolExecutor(FETCH_WORKERS)
+    try:
+        pending = {ex.submit(work, u): u for u in urls}
+        deadline = t0 + FETCH_DEADLINE
+        while pending and time.time() < deadline:
+            done_set, pending = wait(pending, timeout=20,
+                                     return_when=FIRST_COMPLETED)
+            for f in done_set:
+                u, text = f.result()
+                out[u] = text
+                n = len(text.splitlines()) if text else 0
+                print(f"    [~] {u[:70]} ({'FAILED' if text is None else 'ok'}, "
+                      f"~{n} lines, {time.time() - t0:.0f}s)")
+        if pending:
+            print(f"[!] fetch deadline {FETCH_DEADLINE}s hit — {len(pending)} "
+                  f"sources skipped this cycle")
+            for g in pending:
+                g.cancel()
+    finally:
+        # abandon wedged workers instead of joining them
+        ex.shutdown(wait=False, cancel_futures=True)
+    return [(u, out.get(u)) for u in urls]
 
 
 def dedupe(items):
@@ -1030,6 +1064,7 @@ def annotate_sources(stats, path=None):
 
 def main():
     t0 = time.time()
+    socket.setdefaulttimeout(SOURCE_TIMEOUT)   # global safety net for stray sockets
     print("=" * 60)
     print("MSN Collector started")
     geoip.geo()   # load/build country db (cached; names configs with flags)
