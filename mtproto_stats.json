@@ -1,48 +1,48 @@
 {
-  "last_update": "2026-11-23 20:52:13 UTC",
-  "duration_sec": 62.2,
+  "last_update": "2026-11-23 21:29:04 UTC",
+  "duration_sec": 77.8,
   "channels_ok": 10,
   "channels_failed": 0,
   "failed_channels": [],
-  "raw_proxies": 4221,
+  "raw_proxies": 4234,
   "unique_proxies": 1719,
-  "duplicates_removed": 2502,
-  "alive_proxies": 1253,
+  "duplicates_removed": 2515,
+  "alive_proxies": 1257,
   "kinds": {
-    "mtproto": 1253
+    "mtproto": 1257
   },
   "channel_stats": {
     "proxybolt.link": {
-      "total": 593,
-      "alive": 585
+      "total": 599,
+      "alive": 591
     },
     "mtproxy4free": {
       "total": 436,
-      "alive": 299
+      "alive": 337
     },
     "mtpproxy": {
       "total": 180,
-      "alive": 34
+      "alive": 32
     },
     "ProxyMTProto": {
       "total": 134,
-      "alive": 118
+      "alive": 119
     },
     "TProxyRU": {
       "total": 115,
-      "alive": 63
+      "alive": 29
     },
     "TelMTProto": {
       "total": 106,
-      "alive": 88
-    },
-    "mtproto_proxy_russia": {
-      "total": 105,
-      "alive": 90
+      "alive": 87
     },
     "webproxy": {
       "total": 103,
       "alive": 94
+    },
+    "mtproto_proxy_russia": {
+      "total": 102,
+      "alive": 89
     },
     "MTProtoProxies": {
       "total": 81,
