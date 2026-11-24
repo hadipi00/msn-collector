@@ -784,7 +784,6 @@
   "manifest": {
     "mehdisedighinasab-United-States-1-TCP-443.ovpn": "71b7585947b54c2678dbcdb8adb5b33ba1cc89fd65b6cb0d3943e07444a74fd2",
     "mehdisedighinasab-United-States-1-TCP-80.ovpn": "722b35a8a25111e38fc099d82f050ede8a5cdcbcd88a9c3061bff101217d9dc0",
-    "mehdisedighinasab-United-States-1-UDP-53.ovpn": "203bd75cc677608c4264979a9577dea77a91ea1538622b35b6691bb97968fe91",
     "mehdisedighinasab-United-States-1-UDP-25000.ovpn": "2ace8fc5dbb1d95919e41f63a2515157dd9bf3ec3c6bb87ea1c6cb3d78bc507d",
     "mehdisedighinasab-United-States-2-TCP-443.ovpn": "269725a3bdf551591e038a980436a6b87d8cf07543f54c74420e47d61059a061",
     "mehdisedighinasab-United-States-2-TCP-80.ovpn": "0c87001815ebffaa50a423f743becadae05ef70c6fdb167f7b53e7dde15cf11e",
@@ -801,18 +800,17 @@
     "mehdisedighinasab-United-Kingdom-1-TCP-443.ovpn": "772bd144bd583e3c5487723e878d2a4ce53ec38c9e08f6ed4d9607c36c38de76",
     "mehdisedighinasab-United-Kingdom-1-TCP-80.ovpn": "ebeaf6f8b0f27442090b37ada8e74a67594ce1e80ed8891dd7225763731b5545",
     "mehdisedighinasab-United-Kingdom-1-UDP-53.ovpn": "43c4bbdf3b77729f72addc8c1878e2811d58a14f20eea224dfe55f6ac83d413e",
+    "mehdisedighinasab-United-Kingdom-1-UDP-25000.ovpn": "f9b19c1891c487c9c9285664af3d48393ff3d9118aeb059a8b33f3893f7a6367",
     "mehdisedighinasab-United-Kingdom-2-TCP-443.ovpn": "843a35eb15f357cde5c5b221756bc8b892a99ecb40a2604447bbf571c32e116f",
     "mehdisedighinasab-United-Kingdom-2-TCP-80.ovpn": "dc26d5ec5c1974e24162e5c04c76326436b86aeaee2a928a7fb23a5e01db3daa",
     "mehdisedighinasab-United-Kingdom-2-UDP-53.ovpn": "2de8fdf4babcfa6364ed9fc649e66ee3df46e43b7b12788ca884800e9da7a546",
     "mehdisedighinasab-United-Kingdom-2-UDP-25000.ovpn": "3a363634a9cb6a23d16bcb1c509a9bc79c9a1ea06ca0f046446a63db2dc03093",
     "mehdisedighinasab-Germany-1-TCP-443.ovpn": "393132846e69169972540d256e6829b1fb7243671e956c60fd9a3b452dfe7b6e",
     "mehdisedighinasab-Germany-1-TCP-80.ovpn": "a111e51b7f04f938b75e2d24fe7b783173529b4e494732573fe300ba5a31c0db",
-    "mehdisedighinasab-Germany-1-UDP-53.ovpn": "b7dfa692e7f5d4d97965389bdee03d54484bae2fc88bf93cdc01e1ad785b5b5d",
     "mehdisedighinasab-Germany-1-UDP-25000.ovpn": "71abda10f08809a78c5a210f39aab1a9dc6975f7631bdd68b057e640cfb1b4e4",
     "mehdisedighinasab-Germany-2-TCP-443.ovpn": "426245515aee31a5cf6c6d0dfc9d86eca8be5fdcd6b40a89928d633c761eaab2",
     "mehdisedighinasab-Germany-2-TCP-80.ovpn": "b8ea7a3b0a0c30304fcc4b4c4aefe3adfce041adcf0ddd031c2e53f8cf738959",
     "mehdisedighinasab-Germany-2-UDP-53.ovpn": "2f00ea0572c752e2803a662aed613c861a8caa312bb5aadc22864024c52c56e5",
-    "mehdisedighinasab-Germany-2-UDP-25000.ovpn": "25ec3be2e04e6ad8ee20c4d3a051c2856d5da1e3575c49f6eb232e002b1a5cac",
     "mehdisedighinasab-France-1-TCP-443.ovpn": "e53c9643ceb1cb346516f15057d9a4bde3e6d0a2ebcd0380aa762e00cb1c5a9c",
     "mehdisedighinasab-France-1-TCP-80.ovpn": "7ba37fec8de4c69110a1ad29d186ea278e46dea134367c82ed09983f9796b1c9",
     "mehdisedighinasab-France-1-UDP-53.ovpn": "8d616054c817fbda28beb9c8ef5696af8d47903e4c7407b98a13a49697216a5d",
@@ -821,18 +819,10 @@
     "mehdisedighinasab-France-2-TCP-80.ovpn": "936d4f397d66c97232d415ac5731d56436e238d9a29d412851afc58b6a878c26",
     "mehdisedighinasab-France-2-UDP-53.ovpn": "4b40bca7ccef7c0ee760aa0925e2a47b6e3bf78e36fb9fdbbcbc180bd8cc51dd",
     "mehdisedighinasab-France-2-UDP-25000.ovpn": "9d808bef7e4de4ba75afc9e5e2dcfdc3548a0ee3580e3c52319378d8ff1dd527",
-    "openvpn.json": "69d6f6bc66a5940e7607e066f8c2721823efa48a08b3fa8bd3bc3cf544d13103",
+    "openvpn.json": "97ce2591084da81085ae871c190d603b0b9551b2a43aee8b3e8142ad746f2160",
     "README.txt": "5555c73b7c991123012fcbf565e1563aaefe78aa29812148dbbfcafcb08ec985"
   },
   "runs": [
-    {
-      "ts": "2026-11-24T01:55:04+00:00",
-      "new_configs": 0,
-      "duplicates": 40,
-      "invalid": 0,
-      "vpnbook_new": 0,
-      "duration_sec": 28.7
-    },
     {
       "ts": "2026-11-24T08:14:02+00:00",
       "new_configs": 0,
@@ -904,6 +894,14 @@
       "invalid": 0,
       "vpnbook_new": 0,
       "duration_sec": 24.9
+    },
+    {
+      "ts": "2026-11-24T23:38:24+00:00",
+      "new_configs": 0,
+      "duplicates": 40,
+      "invalid": 0,
+      "vpnbook_new": 0,
+      "duration_sec": 30.4
     }
   ],
   "manifest_vpnbook": {
