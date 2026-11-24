@@ -1,14 +1,14 @@
 {
-  "last_update": "2026-11-24 20:27:52 UTC",
-  "duration_sec": 21.9,
+  "last_update": "2026-11-24 22:27:49 UTC",
+  "duration_sec": 21.2,
   "source": "publicvpnlist.com official proxy exports (free)",
-  "raw_records": 3905,
-  "unique_tested": 3905,
+  "raw_records": 3882,
+  "unique_tested": 3882,
   "duplicates_removed": 0,
-  "alive_proxies": 721,
+  "alive_proxies": 746,
   "kinds": {
-    "http": 638,
-    "socks4": 17,
-    "socks5": 66
+    "http": 647,
+    "socks4": 20,
+    "socks5": 79
   }
 }
