@@ -9,12 +9,12 @@
 
 @vnespiska  # 0 proxies, 0 live
 @MTProtoProxies  # 81 proxies, 6 live
-@ProxyMTProto  # 137 proxies, 118 live
-@TelMTProto  # 106 proxies, 88 live
-@mtpproxy  # 180 proxies, 22 live
-@TProxyRU  # 121 proxies, 29 live
-@mtproxy4free  # 436 proxies, 344 live
-@mtproto_proxy_russia  # 103 proxies, 97 live
-@webproxy  # 103 proxies, 91 live
+@ProxyMTProto  # 141 proxies, 118 live
+@TelMTProto  # 101 proxies, 65 live
+@mtpproxy  # 180 proxies, 33 live
+@TProxyRU  # 122 proxies, 32 live
+@mtproxy4free  # 436 proxies, 352 live
+@mtproto_proxy_russia  # 104 proxies, 92 live
+@webproxy  # 103 proxies, 78 live
 
 @Myporoxy  # 1 proxies, 0 live
