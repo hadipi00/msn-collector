@@ -12,8 +12,8 @@
   --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.08);
   --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
   --tx:#e8ecf6; --tx2:#9aa7bd; --tx3:#5d6b85;
-  --cy:#22d3ee; --vi:#8b5cf6; --pk:#ec4899; --gr:#34d399;
-  --grad:linear-gradient(90deg,var(--cy),var(--vi) 55%,var(--pk));
+  --cy:#ff0062; --vi:#ff4d94; --pk:#ff5c9b; --gr:#34d399;
+  --grad:linear-gradient(90deg,#ff0062,#ff4d94 55%,#ff8ab5);
   --r:18px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -23,7 +23,7 @@ body{
   font-family:'Vazirmatn','Segoe UI',Tahoma,sans-serif;
   overflow-x:hidden; line-height:1.7;
 }
-::selection{background:rgba(139,92,246,.45)}
+::selection{background:rgba(255,0,98,.45)}
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-thumb{background:#1d2740;border-radius:9px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -47,7 +47,7 @@ body{
 nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(4,6,15,.72);border-bottom:1px solid var(--line)}
 .nav-in{max-width:1180px;margin-inline:auto;padding:.8rem clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:1rem}
 .logo{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.05rem;text-decoration:none;color:var(--tx)}
-.logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:.95rem;color:#fff;box-shadow:0 0 18px rgba(139,92,246,.55)}
+.logo .dot{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;font-size:.95rem;color:#fff;box-shadow:0 0 18px rgba(255,0,98,.55)}
 .nav-links{display:flex;gap:.4rem;margin-inline-start:auto;align-items:center}
 .nav-links a{color:var(--tx2);text-decoration:none;font-size:.86rem;padding:.42rem .8rem;border-radius:10px;transition:.2s}
 .nav-links a:hover{color:var(--tx);background:var(--glass2)}
@@ -57,11 +57,11 @@ nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop
 
 /* ===== hero ===== */
 header.hero{padding:clamp(3.2rem,9vw,6.5rem) 0 clamp(2.4rem,6vw,4rem);text-align:center;position:relative}
-.badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(34,211,238,.35);background:rgba(34,211,238,.07);color:#a5f3fc;font-size:.82rem;padding:.4rem 1rem;border-radius:99px;margin-bottom:1.4rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,0,98,.35);background:rgba(255,0,98,.07);color:#ff8ab5;font-size:.82rem;padding:.4rem 1rem;border-radius:99px;margin-bottom:1.4rem}
 .badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--gr);box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
 h1{font-size:clamp(2.1rem,7vw,4.2rem);font-weight:800;line-height:1.25;letter-spacing:-.02em}
-h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(139,92,246,.35))}
+h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(255,0,98,.35))}
 .sub{color:var(--tx2);font-size:clamp(.95rem,2.4vw,1.12rem);max-width:640px;margin:1rem auto 0}
 .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin-top:2rem}
 .chip{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:.75rem 1.25rem;min-width:126px;backdrop-filter:blur(8px)}
@@ -69,8 +69,8 @@ h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 .chip .t{font-size:.75rem;color:var(--tx2);margin-top:.15rem}
 .cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem}
 .btn{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;cursor:pointer;border-radius:13px;padding:.78rem 1.6rem;font-size:.95rem;font-weight:700;font-family:inherit;transition:.22s;border:1px solid transparent}
-.btn-pri{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(139,92,246,.35)}
-.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,92,246,.5)}
+.btn-pri{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(255,0,98,.35)}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,0,98,.5)}
 .btn-sec{background:var(--glass);border-color:var(--line2);color:var(--tx)}
 .btn-sec:hover{background:var(--glass2);transform:translateY(-2px)}
 .upd{margin-top:1.6rem;color:var(--tx3);font-size:.8rem}
@@ -95,10 +95,10 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .scard .acts{display:flex;gap:.45rem;margin-top:.2rem}
 .act{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:10px;padding:.5rem .6rem;font-size:.8rem;font-weight:700;cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--tx);text-decoration:none;font-family:inherit;transition:.2s;text-align:center}
 .act:hover{background:var(--glass2)}
-.act.copy{border-color:rgba(34,211,238,.4);color:#a5f3fc}
-.act.copy:hover{background:rgba(34,211,238,.12)}
-.act.dl{border-color:rgba(139,92,246,.4);color:#c4b5fd}
-.act.dl:hover{background:rgba(139,92,246,.12)}
+.act.copy{border-color:rgba(255,0,98,.4);color:#ff8ab5}
+.act.copy:hover{background:rgba(255,0,98,.12)}
+.act.dl{border-color:rgba(255,77,148,.4);color:#ffb3d1}
+.act.dl:hover{background:rgba(255,77,148,.12)}
 
 /* ===== explorer ===== */
 .explorer{background:var(--glass);border:1px solid var(--line);border-radius:22px;overflow:hidden;backdrop-filter:blur(10px)}
@@ -124,7 +124,7 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .row .btns{display:flex;gap:.3rem;flex-shrink:0}
 .icb{border:1px solid var(--line2);background:transparent;color:var(--tx2);border-radius:8px;padding:.32rem .55rem;font-size:.7rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.18s;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
 .icb:hover{color:var(--tx);background:var(--glass2)}
-.icb.go{color:#a5f3fc;border-color:rgba(34,211,238,.4)}
+.icb.go{color:#ff8ab5;border-color:rgba(255,0,98,.4)}
 .empty{padding:2.4rem;text-align:center;color:var(--tx3);font-size:.88rem}
 .more-wrap{padding:.8rem;text-align:center;border-top:1px solid var(--line)}
 
@@ -167,10 +167,10 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 /* ===== guide ===== */
 .guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem}
 .gcard{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
-.gcard .step{width:34px;height:34px;border-radius:11px;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#fff;margin-bottom:.7rem;box-shadow:0 0 16px rgba(139,92,246,.4)}
+.gcard .step{width:34px;height:34px;border-radius:11px;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#fff;margin-bottom:.7rem;box-shadow:0 0 16px rgba(255,0,98,.4)}
 .gcard h3{font-size:.95rem;font-weight:800;margin-bottom:.4rem}
 .gcard p{color:var(--tx2);font-size:.83rem}
-.gcard code{direction:ltr;display:inline-block;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:7px;padding:.1rem .45rem;font-size:.78rem;color:#a5f3fc;font-family:ui-monospace,monospace}
+.gcard code{direction:ltr;display:inline-block;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:7px;padding:.1rem .45rem;font-size:.78rem;color:#ff8ab5;font-family:ui-monospace,monospace}
 
 /* ===== footer ===== */
 footer{border-top:1px solid var(--line);padding:2rem 0 3rem;text-align:center;color:var(--tx3);font-size:.82rem}
@@ -319,23 +319,23 @@ footer .heart{color:var(--pk)}
 'use strict';
 /* ================= data config ================= */
 const P = [
- {id:'vless',    name:'VLESS',        file:'vless.txt',        b64:'vless_b64.txt',        color:'#22d3ee', src:'v2ray'},
- {id:'vmess',    name:'VMess',        file:'vmess.txt',        b64:'vmess_b64.txt',        color:'#8b5cf6', src:'v2ray'},
+ {id:'vless',    name:'VLESS',        file:'vless.txt',        b64:'vless_b64.txt',        color:'#ff0062', src:'v2ray'},
+ {id:'vmess',    name:'VMess',        file:'vmess.txt',        b64:'vmess_b64.txt',        color:'#ff4d94', src:'v2ray'},
  {id:'trojan',   name:'Trojan',       file:'trojan.txt',       b64:'trojan_b64.txt',       color:'#ec4899', src:'v2ray'},
  {id:'ss',       name:'Shadowsocks',  file:'ss.txt',           b64:'ss_b64.txt',           color:'#f59e0b', src:'v2ray'},
  {id:'ssr',      name:'SSR',          file:'ssr.txt',          b64:'ssr_b64.txt',          color:'#10b981', src:'v2ray'},
  {id:'tuic',     name:'TUIC',         file:'tuic.txt',         b64:'tuic_b64.txt',         color:'#f43f5e', src:'v2ray'},
  {id:'hysteria2',name:'Hysteria2',    file:'hysteria2.txt',    b64:'hysteria2_b64.txt',    color:'#a3e635', src:'v2ray'},
- {id:'mtproto',  name:'MTProto',      file:'mtproto.txt',      color:'#3b82f6', src:'mtproto'},
+ {id:'mtproto',  name:'MTProto',      file:'mtproto.txt',      color:'#cc0050', src:'mtproto'},
  {id:'http',     name:'HTTP',         file:'plain_http.txt',   color:'#94a3b8', src:'plain'},
- {id:'socks5',   name:'SOCKS5',       file:'plain_socks5.txt', color:'#e879f9', src:'plain'},
+ {id:'socks5',   name:'SOCKS5',       file:'plain_socks5.txt', color:'#ff8ab5', src:'plain'},
  {id:'socks4',   name:'SOCKS4',       file:'plain_socks4.txt', color:'#64748b', src:'plain'},
 ];
 const SUBS = [
- {name:'ساب کامل (همه پروتکل‌ها)', file:'sub.txt', icon:'★', color:'linear-gradient(135deg,#22d3ee,#ec4899)', key:'alive'},
+ {name:'ساب کامل (همه پروتکل‌ها)', file:'sub.txt', icon:'★', color:'linear-gradient(135deg,#ff0062,#ff4d94)', key:'alive'},
  {name:'لیست خام همه (متن ساده)', file:'all.txt', icon:'≡', color:'#64748b', key:'alive'},
- {name:'ساب VLESS',  file:'vless_b64.txt',  icon:'V', color:'#22d3ee', key:'vless'},
- {name:'ساب VMess',  file:'vmess_b64.txt',  icon:'M', color:'#8b5cf6', key:'vmess'},
+ {name:'ساب VLESS',  file:'vless_b64.txt',  icon:'V', color:'#ff0062', key:'vless'},
+ {name:'ساب VMess',  file:'vmess_b64.txt',  icon:'M', color:'#ff4d94', key:'vmess'},
  {name:'ساب Trojan', file:'trojan_b64.txt', icon:'T', color:'#ec4899', key:'trojan'},
  {name:'ساب Shadowsocks', file:'ss_b64.txt', icon:'S', color:'#f59e0b', key:'ss'},
  {name:'ساب SSR', file:'ssr_b64.txt', icon:'R', color:'#10b981', key:'ssr'},
