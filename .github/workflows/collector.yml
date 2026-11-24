@@ -2,11 +2,10 @@ name: MSN Collector
 
 on:
   schedule:
-    # minute 0 is heavily oversubscribed on GitHub and schedule events get
-    # dropped — use off-minute slots, and two of them per 2h cycle for
-    # redundancy (one dropped slot can no longer leave the collector dark).
-    - cron: "17 */2 * * *"   # even hours at :17
-    - cron: "47 */2 * * *"   # even hours at :47 (second slot, redundancy)
+    # exactly one run per 2 hours. minute 0 is heavily oversubscribed on
+    # GitHub and its schedule events get silently dropped — 17 past the hour
+    # is reliably delivered.
+    - cron: "17 */2 * * *"   # even hours at :17 UTC
   workflow_dispatch:
 
 permissions:
