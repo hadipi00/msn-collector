@@ -18,7 +18,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 210
     env:
       OK_BUDGET_SEC: "300"   # cap outlinekeys key-page fetching per cycle (cache is committed, so progress carries over)
     steps:
@@ -75,3 +75,83 @@ jobs:
           done
           echo "[x] push failed after retries"
           exit 1
+
+      # Cadence keeper. GitHub's scheduler silently drops schedule events for
+      # some repos (this one: 0 deliveries across 18 boundaries while the cron
+      # itself is valid, on the default branch, with Actions enabled — config
+      # is NOT the problem). Each completed run therefore holds the 2h cadence
+      # itself: sleep until the next even-hour :17 boundary, then dispatch the
+      # next cycle — UNLESS a scheduled run already fired for that boundary
+      # (deduped: a live cron always wins and the keeper stays idle). Skipped
+      # on cancellation: a cancelled sleeper is by definition replaced by the
+      # newer run that cancelled it.
+      - name: Keepalive — hold the 2h cadence
+        if: success() || failure()
+        env:
+          PAT: ${{ secrets.MSN_KEEPALIVE_PAT }}
+          GH_REPO: ${{ github.repository }}
+          THIS_RUN: ${{ github.run_id }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "[keepalive] PAT secret missing — cron-only mode"
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, time, datetime, urllib.request
+          PAT, REPO, THIS = (os.environ["PAT"], os.environ["GH_REPO"],
+                             os.environ["THIS_RUN"])
+          def api(url, method="GET", data=None):
+              req = urllib.request.Request(url, method=method,
+                  headers={"Authorization": "Bearer " + PAT,
+                           "Accept": "application/vnd.github+json"},
+                  data=json.dumps(data).encode() if data else None)
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      return json.loads(r.read() or b"{}")
+              except Exception as e:
+                  print("[keepalive] api error:", e)
+                  return {}
+          t = datetime.datetime.now(datetime.timezone.utc)
+          nh = t.hour + (2 if t.hour % 2 == 0 else 1)      # next even hour
+          base = datetime.datetime(t.year, t.month, t.day,
+                                   tzinfo=datetime.timezone.utc)
+          target = base.timestamp() + nh * 3600 + 17 * 60 + 180  # :17 +3m grace
+          wait = target - time.time()
+          if not (0 < wait < 4 * 3600):
+              print("[keepalive] boundary timing unclear — skipping")
+              raise SystemExit(0)
+          print(f"[keepalive] holding cadence: sleeping {wait/60:.0f} min "
+                f"until the next even-hour :17 boundary")
+          end = time.time() + wait
+          while time.time() < end:
+              time.sleep(min(60, max(1, end - time.time())))
+          runs = api("https://api.github.com/repos/" + REPO +
+                     "/actions/workflows/collector.yml/runs?per_page=6"
+                     ).get("workflow_runs", [])
+          for r in runs:
+              if str(r["id"]) == THIS:
+                  continue
+              if r["status"] in ("in_progress", "queued", "pending",
+                                 "waiting", "requested"):
+                  print("[keepalive] another run is already active — "
+                        "cron delivered, keeper idles")
+                  raise SystemExit(0)
+              st = datetime.datetime.fromisoformat(
+                  r["run_started_at"].replace("Z", "+00:00")).timestamp()
+              if st > time.time() - 28 * 60:
+                  print("[keepalive] a run started within the last 28 min — "
+                        "cron delivered, keeper idles")
+                  raise SystemExit(0)
+          req = urllib.request.Request(
+              "https://api.github.com/repos/" + REPO +
+              "/actions/workflows/collector.yml/dispatches",
+              method="POST",
+              headers={"Authorization": "Bearer " + PAT,
+                       "Accept": "application/vnd.github+json"},
+              data=b'{"ref":"main"}')
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  print("[keepalive] dispatched the next 2h cycle:", r.status)
+          except Exception as e:
+              print("[keepalive] DISPATCH FAILED:", e)
+          PY
