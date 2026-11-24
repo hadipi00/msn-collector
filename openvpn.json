@@ -2,8 +2,8 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-24T08:35:52+00:00",
-  "total": 39,
+  "last_update": "2026-11-24T10:29:58+00:00",
+  "total": 38,
   "countries": [
     {
       "country": "United-States",
@@ -24,15 +24,15 @@
       "count": 8
     },
     {
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "count": 8
-    },
-    {
       "country": "Canada",
       "country_code": "CA",
       "flag": "🇨🇦",
+      "count": 7
+    },
+    {
+      "country": "France",
+      "country_code": "FR",
+      "flag": "🇫🇷",
       "count": 7
     }
   ],
@@ -187,17 +187,6 @@
       "country_code": "FR",
       "flag": "🇫🇷",
       "port": 25000,
-      "transport": "UDP",
-      "server": "5.196.64.231",
-      "collected_at": "2026-11-03T15:12:16+00:00"
-    },
-    {
-      "id": "ovpn-7c110452ab404d3a",
-      "filename": "mehdisedighinasab-France-2-UDP-53.ovpn",
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "port": 53,
       "transport": "UDP",
       "server": "5.196.64.231",
       "collected_at": "2026-11-03T15:12:16+00:00"
