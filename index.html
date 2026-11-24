@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%90%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
 <title>MSN Collector — کانفیگ‌های رایگان VPN | آپدیت هر ۲ ساعت</title>
 <meta name="description" content="کلکسیونر خودکار کانفیگ‌های رایگان: VLESS، VMess، Trojan، Shadowsocks، TUIC، Hysteria2، MTProto و پراکسی‌های خام — آپدیت خودکار هر ۲ ساعت">
 <style>
@@ -52,7 +54,7 @@ nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop
 .nav-links a{color:var(--tx2);text-decoration:none;font-size:.86rem;padding:.42rem .8rem;border-radius:10px;transition:.2s}
 .nav-links a:hover{color:var(--tx);background:var(--glass2)}
 .gh-btn{display:flex;align-items:center;gap:.45rem;border:1px solid var(--line2);border-radius:10px;padding:.42rem .85rem;font-size:.86rem;color:var(--tx)!important}
-.gh-btn svg{width:16px;height:16px;fill:currentColor}
+.gh-btn i{font-size:16px;line-height:1}
 @media(max-width:760px){.nav-links a.hidem{display:none}}
 
 /* ===== hero ===== */
@@ -89,7 +91,7 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .scard::before{content:'';position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--pc,var(--grad));opacity:.85}
 .scard:hover{border-color:var(--line2);transform:translateY(-3px);background:var(--glass2)}
 .scard .nm{display:flex;align-items:center;gap:.55rem;font-weight:700;font-size:.95rem}
-.scard .nm .ic{width:26px;height:26px;border-radius:8px;background:var(--pc,var(--vi));display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff;flex-shrink:0}
+.scard .nm .ic{width:26px;height:26px;border-radius:8px;background:var(--pc,var(--vi));display:grid;place-items:center;font-size:.82rem;font-weight:900;color:#fff;flex-shrink:0}
 .scard .cnt{font-size:.74rem;color:var(--tx2)}
 .scard .cnt b{color:var(--cy);font-weight:800}
 .scard .acts{display:flex;gap:.45rem;margin-top:.2rem}
@@ -112,7 +114,7 @@ section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .toolbar{display:flex;gap:.6rem;align-items:center;padding:.9rem;flex-wrap:wrap;border-bottom:1px solid var(--line)}
 .search{flex:1;min-width:200px;display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:11px;padding:.5rem .9rem}
 .search input{background:transparent;border:none;outline:none;color:var(--tx);font-family:inherit;font-size:.87rem;width:100%}
-.search svg{width:15px;height:15px;stroke:var(--tx3);flex-shrink:0}
+.search i{font-size:15px;color:var(--tx3);flex-shrink:0}
 .tinfo{font-size:.8rem;color:var(--tx2)}
 .tinfo b{color:var(--cy)}
 .rows{max-height:520px;overflow-y:auto}
@@ -196,7 +198,7 @@ footer .heart{color:var(--pk)}
 
 <nav>
   <div class="nav-in">
-    <a class="logo" href="#"><span class="dot">MSN</span> MSN&nbsp;Collector</a>
+    <a class="logo" href="#"><span class="dot"><i class="fa-solid fa-earth-americas"></i></span> MSN&nbsp;Collector</a>
     <div class="nav-links">
       <a class="hidem" href="#subs">ساب‌ها</a>
       <a class="hidem" href="#proto">پروتکل‌ها</a>
@@ -204,7 +206,7 @@ footer .heart{color:var(--pk)}
       <a class="hidem" href="#stats">آمار</a>
       <a class="hidem" href="#guide">راهنما</a>
       <a class="gh-btn" id="ghRepo" href="https://github.com/hadipi00/msn-collector" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <i class="fa-brands fa-github"></i>
         گیت‌هاب
       </a>
     </div>
@@ -223,7 +225,7 @@ footer .heart{color:var(--pk)}
     <div class="chip"><div class="n" id="stOvpn">—</div><div class="t">OpenVPN</div></div>
   </div>
   <div class="cta">
-    <a class="btn btn-pri" id="btnSub" href="sub.txt" download="msn_sub.txt">⬇ دانلود ساب کامل (Base64)</a>
+    <a class="btn btn-pri" id="btnSub" href="sub.txt" download="msn_sub.txt"><i class="fa-solid fa-download"></i> دانلود ساب کامل (Base64)</a>
     <a class="btn btn-sec" href="#proto">مرور تک‌تک پروتکل‌ها ↓</a>
   </div>
   <div class="upd">آخرین به‌روزرسانی: <b id="lastUpd">در حال دریافت…</b></div>
@@ -250,12 +252,12 @@ footer .heart{color:var(--pk)}
     <div class="tabs" id="tabs"></div>
     <div class="toolbar">
       <div class="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <i class="fa-solid fa-magnifying-glass"></i>
         <input id="q" type="search" placeholder="جستجو در کانفیگ‌ها… (IP، کشور، پورت)">
       </div>
       <div class="tinfo">نمایش <b id="shown">۰</b> از <b id="curTotal">—</b></div>
-      <button class="act copy" id="copyAll" type="button" style="flex:0">کپی همه</button>
-      <a class="act dl" id="dlCur" href="#" download style="flex:0">⬇ فایل</a>
+      <button class="act copy" id="copyAll" type="button" style="flex:0"><i class="fa-solid fa-copy"></i> کپی همه</button>
+      <a class="act dl" id="dlCur" href="#" download style="flex:0"><i class="fa-solid fa-download"></i> فایل</a>
     </div>
     <div class="rows" id="rows"></div>
     <div class="more-wrap"><button class="btn btn-sec" id="more" type="button" style="padding:.55rem 1.4rem;font-size:.85rem">نمایش بیشتر</button></div>
@@ -279,7 +281,7 @@ footer .heart{color:var(--pk)}
   </div>
   <div class="two-col">
     <div class="explorer" style="padding:1.2rem">
-      <h3 style="font-size:.92rem;font-weight:800;margin-bottom:1rem">🌐 سرورهای V2Ray</h3>
+      <h3 style="font-size:.92rem;font-weight:800;margin-bottom:1rem"><i class="fa-solid fa-globe" style="color:var(--cy)"></i> سرورهای V2Ray</h3>
       <div class="cbar" id="cbarV2"></div>
     </div>
     <div class="explorer" style="padding:1.2rem">
@@ -310,10 +312,10 @@ footer .heart{color:var(--pk)}
     <a href="sources.txt" target="_blank">منابع جمع‌آوری</a>
   </div>
   <div>MSN Collector — گردآوری و تست خودکار هر ۲ ساعت با GitHub Actions</div>
-  <div>طراحی و توسعه با <span class="heart">♥</span> برای <a href="https://t.me/mehdisedighinasab" target="_blank" rel="noopener">مهدی صدیقی نسب</a></div>
+  <div>طراحی و توسعه با <span class="heart"><i class="fa-solid fa-heart"></i></span> برای <a href="https://t.me/mehdisedighinasab" target="_blank" rel="noopener">مهدی صدیقی نسب</a></div>
 </footer>
 
-<div id="toast">کپی شد ✓</div>
+<div id="toast"><i class="fa-solid fa-check"></i> کپی شد</div>
 
 <script>
 'use strict';
@@ -332,15 +334,15 @@ const P = [
  {id:'socks4',   name:'SOCKS4',       file:'plain_socks4.txt', color:'#64748b', src:'plain'},
 ];
 const SUBS = [
- {name:'ساب کامل (همه پروتکل‌ها)', file:'sub.txt', icon:'★', color:'linear-gradient(135deg,#ff0062,#ff4d94)', key:'alive'},
- {name:'لیست خام همه (متن ساده)', file:'all.txt', icon:'≡', color:'#64748b', key:'alive'},
- {name:'ساب VLESS',  file:'vless_b64.txt',  icon:'V', color:'#ff0062', key:'vless'},
- {name:'ساب VMess',  file:'vmess_b64.txt',  icon:'M', color:'#ff4d94', key:'vmess'},
- {name:'ساب Trojan', file:'trojan_b64.txt', icon:'T', color:'#ec4899', key:'trojan'},
- {name:'ساب Shadowsocks', file:'ss_b64.txt', icon:'S', color:'#f59e0b', key:'ss'},
- {name:'ساب SSR', file:'ssr_b64.txt', icon:'R', color:'#10b981', key:'ssr'},
- {name:'ساب TUIC', file:'tuic_b64.txt', icon:'U', color:'#f43f5e', key:'tuic'},
- {name:'ساب Hysteria2', file:'hysteria2_b64.txt', icon:'H', color:'#a3e635', key:'hysteria2'},
+ {name:'ساب کامل (همه پروتکل‌ها)', file:'sub.txt', icon:'star', color:'linear-gradient(135deg,#ff0062,#ff4d94)', key:'alive'},
+ {name:'لیست خام همه (متن ساده)', file:'all.txt', icon:'list', color:'#64748b', key:'alive'},
+ {name:'ساب VLESS',  file:'vless_b64.txt',  icon:'bolt', color:'#ff0062', key:'vless'},
+ {name:'ساب VMess',  file:'vmess_b64.txt',  icon:'shuffle', color:'#ff4d94', key:'vmess'},
+ {name:'ساب Trojan', file:'trojan_b64.txt', icon:'shield-halved', color:'#ec4899', key:'trojan'},
+ {name:'ساب Shadowsocks', file:'ss_b64.txt', icon:'lock', color:'#f59e0b', key:'ss'},
+ {name:'ساب SSR', file:'ssr_b64.txt', icon:'lock-open', color:'#10b981', key:'ssr'},
+ {name:'ساب TUIC', file:'tuic_b64.txt', icon:'paper-plane', color:'#f43f5e', key:'tuic'},
+ {name:'ساب Hysteria2', file:'hysteria2_b64.txt', icon:'rocket', color:'#a3e635', key:'hysteria2'},
 ];
 const FA_COUNTRY = {CA:'کانادا',US:'آمریکا',DE:'آلمان',NL:'هلند',GB:'انگلیس',RU:'روسیه',SG:'سنگاپور',IR:'ایران',FR:'فرانسه',SE:'سوئد',HK:'هنگ‌کنگ',FI:'فنلاند',BZ:'بلیز',JP:'ژاپن',CR:'کاستاریکا',PL:'لهستان',TR:'ترکیه',CY:'قبرس',SC:'سیشل',KZ:'قزاقستان',ES:'اسپانیا',IT:'ایتالیا',KR:'کره',AT:'اتریش',EE:'استونی',IN:'هند',AU:'استرالیا',UA:'اوکراین',CH:'سوئیس',CN:'چین',BR:'برزیل',MX:'مکزیک',RO:'رومانی',LT:'لتونی',LV:'لتونی',BG:'بلغارستان',CZ:'چک',PT:'پرتغال',IE:'ایرلند',IL:'اسرائیل',AE:'امارات',SA:'عربستان',NO:'نروژ',DK:'دانمارک',IS:'ایسلند',MD:'مولداوی',RS:'صربستان',HU:'مجارستان',GR:'یونان',CL:'شیلی',AR:'آرژانتین',CO:'کلمبیا',ZA:'آفریقای جنوبی',NZ:'نیوزیلند',TW:'تایوان',VN:'ویتنام',TH:'تایلند',MY:'مالزی',ID:'اندونزی',PH:'فیلیپین',IQ:'عراق',GE:'گرجستان',AM:'ارمنستان',AZ:'آذربایجان',BY:'بلاروس',SK:'اسلواکی',SI:'اسلوونی',HR:'کرواتی',BA:'بوسنی',AL:'آلبانی',MK:'مقدونیه',MT:'مالت',LU:'لوکزامبورگ',BE:'بلژیک',MO:'ماکائو',PA:'پاناما',PE:'پرو',UY:'اروگوئه',EC:'اکوادور'};
 const flagOf = c => c && /^[A-Za-z]{2}$/.test(c) ? String.fromCodePoint(...[...c.toUpperCase()].map(x=>0x1F1E6+x.charCodeAt(0)-65)) : '🌐';
@@ -354,8 +356,8 @@ async function tget(u){ const r = await fetch(u + '?v=' + Date.now()); if(!r.ok)
 
 /* ================= toast & copy ================= */
 let toastT;
-function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('show'), 1600); }
-async function copyTxt(s, msg){ try { await navigator.clipboard.writeText(s); } catch(e){ const ta=document.createElement('textarea'); ta.value=s; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } toast(msg || 'کپی شد ✓'); }
+function toast(msg){ const t = $('#toast'); t.innerHTML = '<i class="fa-solid fa-check"></i> ' + msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('show'), 1600); }
+async function copyTxt(s, msg){ try { await navigator.clipboard.writeText(s); } catch(e){ const ta=document.createElement('textarea'); ta.value=s; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } toast(msg || 'کپی شد'); }
 
 /* ================= particles ================= */
 (function(){
@@ -416,16 +418,16 @@ function renderSubs(){
   $('#subGrid').innerHTML = SUBS.map(s => {
     const n = s.key==='alive' ? (S.alive_configs||0) : ((S.protocols||{})[s.key]);
     return `<div class="scard" style="--pc:${s.color}">
-      <div class="nm"><span class="ic" style="${s.color.startsWith('linear')?'background:'+s.color:''}">${s.icon}</span> ${s.name}</div>
+      <div class="nm"><span class="ic" style="${s.color.startsWith('linear')?'background:'+s.color:''}"><i class="fa-solid fa-${s.icon}"></i></span> ${s.name}</div>
       <div class="cnt">${n!=null ? 'تعداد: <b>'+faNum(n)+'</b> کانفیگ' : 'فایل Base64'}</div>
       <div class="acts">
-        <button class="act copy" onclick="copyUrl('${s.file}')">کپی لینک ساب</button>
-        <a class="act dl" href="${s.file}" download="${s.file}">⬇ دانلود</a>
+        <button class="act copy" onclick="copyUrl('${s.file}')"><i class="fa-solid fa-link"></i> کپی لینک ساب</button>
+        <a class="act dl" href="${s.file}" download="${s.file}"><i class="fa-solid fa-download"></i> دانلود</a>
       </div>
     </div>`;
   }).join('');
 }
-function copyUrl(f){ copyTxt(location.origin + location.pathname.replace(/[^/]*$/,'') + f, 'لینک ساب کپی شد ✓'); }
+function copyUrl(f){ copyTxt(location.origin + location.pathname.replace(/[^/]*$/,'') + f, 'لینک ساب کپی شد'); }
 
 /* ================= tabs & explorer ================= */
 function renderTabs(){
@@ -478,8 +480,8 @@ function pushRows(){
       <span class="cfg" title="${l.replace(/"/g,'&quot;')}">${l.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
       ${pingBadge(hostport(l))}
       <span class="btns">
-        ${isMt ? `<a class="icb go" href="${l.replace(/&/g,'&amp;')}" title="اتصال در تلگرام">اتصال</a>` : ''}
-        <button class="icb" onclick="copyTxt(this.closest('.row').querySelector('.cfg').textContent,'کانفیگ کپی شد ✓')">کپی</button>
+        ${isMt ? `<a class="icb go" href="${l.replace(/&/g,'&amp;')}" title="اتصال در تلگرام"><i class="fa-solid fa-paper-plane"></i> اتصال</a>` : ''}
+        <button class="icb" onclick="copyTxt(this.closest('.row').querySelector('.cfg').textContent,'کانفیگ کپی شد')"><i class="fa-solid fa-copy"></i> کپی</button>
       </span></div>`;
   }).join('');
   $('#rows').insertAdjacentHTML('beforeend', html);
@@ -496,7 +498,7 @@ function ovRenderList(list){
       <span class="cflag">${e.flag||flagOf(e.country_code)}</span>
       <div class="ovinfo"><b>${e.filename||''}</b><span>${FA_COUNTRY[e.country_code] || e.country || ''} · ${(e.transport||'').toUpperCase()} ${faNum(e.port||'')}</span></div>
       ${pingBadge((e.server||'') + ':' + (e.port||''))}
-      <a class="act dl" href="openvpn/${encodeURIComponent(e.filename||'')}" download title="دانلود این فایل">⬇ دانلود</a></div>`).join('')
+      <a class="act dl" href="openvpn/${encodeURIComponent(e.filename||'')}" download title="دانلود این فایل"><i class="fa-solid fa-download"></i> دانلود</a></div>`).join('')
     : '<div style="color:var(--tx3);font-size:.78rem;padding:.6rem .2rem">موردی یافت نشد</div>';
 }
 function ovFilter(){
@@ -514,7 +516,7 @@ function renderOv(){
       <h3>📦 بستهٔ کامل OpenVPN</h3>
       <p>همهٔ فایل‌های .ovpn در یک بستهٔ واحد ادغام شده‌اند — نام کاربری و رمز هر فایل از قبل داخل خودش قرار دارد؛ ایمپورت کن و وصل شو.</p>
       <div class="meta"><span class="tag">🖥 ${faNum(OV.total||0)} فایل</span><span class="tag">🏳 ${faNum(cs.length)} کشور</span><span class="tag">🔄 هر ۲ ساعت</span></div>
-      <div class="acts"><a class="act dl" href="openvpn.zip" download>⬇ دانلود همه (Zip)</a></div>
+      <div class="acts"><a class="act dl" href="openvpn.zip" download><i class="fa-solid fa-download"></i> دانلود همه (Zip)</a></div>
       <div class="flaggrid">${cs.map(c => `<span class="fpill">${c.flag||flagOf(c.country_code)} <b>${faNum(c.count)}</b></span>`).join('')}</div>
     </div>
     <div class="ovcard">
@@ -549,7 +551,7 @@ function renderCountries(){
 /* ================= events ================= */
 $('#q').addEventListener('input', applyFilter);
 $('#more').onclick = pushRows;
-$('#copyAll').onclick = () => copyTxt((filtered || cache[cur] || []).join('\n'), 'همهٔ کانفیگ‌ها کپی شد ✓ (' + faNum((filtered||[]).length) + ')');
+$('#copyAll').onclick = () => copyTxt((filtered || cache[cur] || []).join('\n'), 'همهٔ کانفیگ‌ها کپی شد (' + faNum((filtered||[]).length) + ')');
 
 /* ================= init ================= */
 let PING = {};
