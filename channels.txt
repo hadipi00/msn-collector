@@ -7,14 +7,14 @@
 #  The count after each channel (N proxies, M live) is auto-updated every run
 # ============================================================
 
-@vnespiska  # 1 proxies, 1 live
+@vnespiska  # 0 proxies, 0 live
 @MTProtoProxies  # 81 proxies, 6 live
-@ProxyMTProto  # 142 proxies, 119 live
-@TelMTProto  # 103 proxies, 77 live
-@mtpproxy  # 180 proxies, 34 live
-@TProxyRU  # 122 proxies, 107 live
-@mtproxy4free  # 436 proxies, 436 live
-@mtproto_proxy_russia  # 101 proxies, 90 live
-@webproxy  # 103 proxies, 84 live
+@ProxyMTProto  # 140 proxies, 116 live
+@TelMTProto  # 101 proxies, 78 live
+@mtpproxy  # 180 proxies, 30 live
+@TProxyRU  # 120 proxies, 31 live
+@mtproxy4free  # 436 proxies, 243 live
+@mtproto_proxy_russia  # 103 proxies, 90 live
+@webproxy  # 103 proxies, 32 live
 
 @Myporoxy  # 1 proxies, 0 live
