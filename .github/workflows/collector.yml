@@ -53,4 +53,26 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           [ -f outlinekeys_cache.json ] && git add -f outlinekeys_cache.json || true
           git add -A
-          git diff --cached --quiet || (git commit -m "auto-update: $(date -u '+%Y-%m-%d %H:%M') UTC" && git push)
+          if git diff --cached --quiet; then
+            echo "[i] nothing to commit"
+            exit 0
+          fi
+          git commit -m "auto-update: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          # tolerate a concurrent push (another slot / manual push): rebase on
+          # top, on conflict keep THIS run's fresh data, retry up to 5 times
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main > /tmp/pull.log 2>&1
+            if [ $? -ne 0 ]; then
+              git checkout --theirs . 2>/dev/null || true
+              git add -A
+              GIT_EDITOR=true git rebase --continue 2>/dev/null || true
+            fi
+            if git push origin HEAD:main; then
+              echo "[✓] pushed"
+              exit 0
+            fi
+            echo "[!] push attempt $i failed — remote moved, retrying in 15s"
+            sleep 15
+          done
+          echo "[x] push failed after retries"
+          exit 1
