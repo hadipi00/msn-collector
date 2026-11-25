@@ -804,6 +804,8 @@
     "mehdisedighinasab-United-Kingdom-2-UDP-25000.ovpn": "3a363634a9cb6a23d16bcb1c509a9bc79c9a1ea06ca0f046446a63db2dc03093",
     "mehdisedighinasab-Germany-1-TCP-443.ovpn": "393132846e69169972540d256e6829b1fb7243671e956c60fd9a3b452dfe7b6e",
     "mehdisedighinasab-Germany-1-TCP-80.ovpn": "a111e51b7f04f938b75e2d24fe7b783173529b4e494732573fe300ba5a31c0db",
+    "mehdisedighinasab-Germany-1-UDP-53.ovpn": "b7dfa692e7f5d4d97965389bdee03d54484bae2fc88bf93cdc01e1ad785b5b5d",
+    "mehdisedighinasab-Germany-1-UDP-25000.ovpn": "71abda10f08809a78c5a210f39aab1a9dc6975f7631bdd68b057e640cfb1b4e4",
     "mehdisedighinasab-Germany-2-TCP-443.ovpn": "426245515aee31a5cf6c6d0dfc9d86eca8be5fdcd6b40a89928d633c761eaab2",
     "mehdisedighinasab-Germany-2-TCP-80.ovpn": "b8ea7a3b0a0c30304fcc4b4c4aefe3adfce041adcf0ddd031c2e53f8cf738959",
     "mehdisedighinasab-Germany-2-UDP-53.ovpn": "2f00ea0572c752e2803a662aed613c861a8caa312bb5aadc22864024c52c56e5",
@@ -812,18 +814,10 @@
     "mehdisedighinasab-France-2-TCP-80.ovpn": "936d4f397d66c97232d415ac5731d56436e238d9a29d412851afc58b6a878c26",
     "mehdisedighinasab-France-2-UDP-53.ovpn": "4b40bca7ccef7c0ee760aa0925e2a47b6e3bf78e36fb9fdbbcbc180bd8cc51dd",
     "mehdisedighinasab-France-2-UDP-25000.ovpn": "9d808bef7e4de4ba75afc9e5e2dcfdc3548a0ee3580e3c52319378d8ff1dd527",
-    "openvpn.json": "321918ca762c8f01477d3a2ad3078bed5d76f2a59172176b08028a4e63974dfc",
+    "openvpn.json": "ab46e57c553c337e85a6ce6252496265b27f1a1730f43467949d7f0fd61b07d9",
     "README.txt": "5555c73b7c991123012fcbf565e1563aaefe78aa29812148dbbfcafcb08ec985"
   },
   "runs": [
-    {
-      "ts": "2026-11-24T23:38:24+00:00",
-      "new_configs": 0,
-      "duplicates": 40,
-      "invalid": 0,
-      "vpnbook_new": 0,
-      "duration_sec": 30.4
-    },
     {
       "ts": "2026-11-25T00:29:38+00:00",
       "new_configs": 0,
@@ -895,6 +889,14 @@
       "invalid": 0,
       "vpnbook_new": 0,
       "duration_sec": 24.0
+    },
+    {
+      "ts": "2026-11-25T18:29:37+00:00",
+      "new_configs": 0,
+      "duplicates": 40,
+      "invalid": 0,
+      "vpnbook_new": 0,
+      "duration_sec": 24.1
     }
   ],
   "manifest_vpnbook": {

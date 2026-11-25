@@ -2,8 +2,8 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-25T16:30:10+00:00",
-  "total": 30,
+  "last_update": "2026-11-25T18:30:01+00:00",
+  "total": 32,
   "countries": [
     {
       "country": "United-States",
@@ -21,7 +21,7 @@
       "country": "Germany",
       "country_code": "DE",
       "flag": "🇩🇪",
-      "count": 6
+      "count": 8
     },
     {
       "country": "Canada",
@@ -144,6 +144,28 @@
       "flag": "🇩🇪",
       "port": 80,
       "transport": "TCP",
+      "server": "51.75.145.20",
+      "collected_at": "2026-11-03T15:12:08+00:00"
+    },
+    {
+      "id": "ovpn-1c1cec271a7919ec",
+      "filename": "mehdisedighinasab-Germany-1-UDP-25000.ovpn",
+      "country": "Germany",
+      "country_code": "DE",
+      "flag": "🇩🇪",
+      "port": 25000,
+      "transport": "UDP",
+      "server": "51.75.145.20",
+      "collected_at": "2026-11-03T15:12:09+00:00"
+    },
+    {
+      "id": "ovpn-4864dd8e4dd55925",
+      "filename": "mehdisedighinasab-Germany-1-UDP-53.ovpn",
+      "country": "Germany",
+      "country_code": "DE",
+      "flag": "🇩🇪",
+      "port": 53,
+      "transport": "UDP",
       "server": "51.75.145.20",
       "collected_at": "2026-11-03T15:12:08+00:00"
     },
