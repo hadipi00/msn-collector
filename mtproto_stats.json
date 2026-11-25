@@ -1,28 +1,28 @@
 {
-  "last_update": "2026-11-24 23:38:04 UTC",
-  "duration_sec": 74.3,
+  "last_update": "2026-11-25 00:29:18 UTC",
+  "duration_sec": 74.9,
   "channels_ok": 10,
   "channels_failed": 0,
   "failed_channels": [],
   "raw_proxies": 4273,
-  "unique_proxies": 1744,
-  "duplicates_removed": 2529,
-  "alive_proxies": 1044,
+  "unique_proxies": 1745,
+  "duplicates_removed": 2528,
+  "alive_proxies": 944,
   "kinds": {
-    "mtproto": 1044
+    "mtproto": 944
   },
   "channel_stats": {
     "proxybolt.link": {
       "total": 615,
-      "alive": 401
+      "alive": 295
     },
     "mtproxy4free": {
       "total": 435,
-      "alive": 324
+      "alive": 333
     },
     "mtpproxy": {
       "total": 180,
-      "alive": 25
+      "alive": 21
     },
     "ProxyMTProto": {
       "total": 138,
@@ -38,11 +38,11 @@
     },
     "webproxy": {
       "total": 101,
-      "alive": 83
+      "alive": 82
     },
     "TelMTProto": {
       "total": 98,
-      "alive": 80
+      "alive": 77
     },
     "MTProtoProxies": {
       "total": 81,
