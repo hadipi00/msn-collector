@@ -784,7 +784,7 @@
   "manifest": {
     "mehdisedighinasab-United-States-1-TCP-443.ovpn": "71b7585947b54c2678dbcdb8adb5b33ba1cc89fd65b6cb0d3943e07444a74fd2",
     "mehdisedighinasab-United-States-1-TCP-80.ovpn": "722b35a8a25111e38fc099d82f050ede8a5cdcbcd88a9c3061bff101217d9dc0",
-    "mehdisedighinasab-United-States-1-UDP-25000.ovpn": "2ace8fc5dbb1d95919e41f63a2515157dd9bf3ec3c6bb87ea1c6cb3d78bc507d",
+    "mehdisedighinasab-United-States-1-UDP-53.ovpn": "203bd75cc677608c4264979a9577dea77a91ea1538622b35b6691bb97968fe91",
     "mehdisedighinasab-United-States-2-TCP-443.ovpn": "269725a3bdf551591e038a980436a6b87d8cf07543f54c74420e47d61059a061",
     "mehdisedighinasab-United-States-2-TCP-80.ovpn": "0c87001815ebffaa50a423f743becadae05ef70c6fdb167f7b53e7dde15cf11e",
     "mehdisedighinasab-United-States-2-UDP-53.ovpn": "1ac55833fac776c48cef4683c91acc10ef8ab3b1d759d4f70b9858d3ce857b8a",
@@ -804,7 +804,6 @@
     "mehdisedighinasab-Germany-1-TCP-443.ovpn": "393132846e69169972540d256e6829b1fb7243671e956c60fd9a3b452dfe7b6e",
     "mehdisedighinasab-Germany-1-TCP-80.ovpn": "a111e51b7f04f938b75e2d24fe7b783173529b4e494732573fe300ba5a31c0db",
     "mehdisedighinasab-Germany-1-UDP-53.ovpn": "b7dfa692e7f5d4d97965389bdee03d54484bae2fc88bf93cdc01e1ad785b5b5d",
-    "mehdisedighinasab-Germany-1-UDP-25000.ovpn": "71abda10f08809a78c5a210f39aab1a9dc6975f7631bdd68b057e640cfb1b4e4",
     "mehdisedighinasab-Germany-2-TCP-443.ovpn": "426245515aee31a5cf6c6d0dfc9d86eca8be5fdcd6b40a89928d633c761eaab2",
     "mehdisedighinasab-Germany-2-TCP-80.ovpn": "b8ea7a3b0a0c30304fcc4b4c4aefe3adfce041adcf0ddd031c2e53f8cf738959",
     "mehdisedighinasab-Germany-2-UDP-53.ovpn": "2f00ea0572c752e2803a662aed613c861a8caa312bb5aadc22864024c52c56e5",
@@ -813,18 +812,10 @@
     "mehdisedighinasab-France-2-TCP-80.ovpn": "936d4f397d66c97232d415ac5731d56436e238d9a29d412851afc58b6a878c26",
     "mehdisedighinasab-France-2-UDP-53.ovpn": "4b40bca7ccef7c0ee760aa0925e2a47b6e3bf78e36fb9fdbbcbc180bd8cc51dd",
     "mehdisedighinasab-France-2-UDP-25000.ovpn": "9d808bef7e4de4ba75afc9e5e2dcfdc3548a0ee3580e3c52319378d8ff1dd527",
-    "openvpn.json": "7ec1c5184c3241ef0379c373eeb44732d7b84463a825a566d2160964dfbee080",
+    "openvpn.json": "ed56c4c34fd08576c9f97b2bfea6ccbd09421a4fb653caa72e3de9c8983bc588",
     "README.txt": "5555c73b7c991123012fcbf565e1563aaefe78aa29812148dbbfcafcb08ec985"
   },
   "runs": [
-    {
-      "ts": "2026-11-26T06:24:53+00:00",
-      "new_configs": 0,
-      "duplicates": 40,
-      "invalid": 0,
-      "vpnbook_new": 0,
-      "duration_sec": 23.2
-    },
     {
       "ts": "2026-11-26T08:24:54+00:00",
       "new_configs": 0,
@@ -896,6 +887,14 @@
       "invalid": 0,
       "vpnbook_new": 0,
       "duration_sec": 27.2
+    },
+    {
+      "ts": "2026-11-26T23:04:04+00:00",
+      "new_configs": 0,
+      "duplicates": 40,
+      "invalid": 0,
+      "vpnbook_new": 0,
+      "duration_sec": 24.2
     }
   ],
   "manifest_vpnbook": {
