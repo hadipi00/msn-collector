@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-11-26 18:22:57 UTC",
-  "duration_sec": 166.2,
+  "last_update": "2026-11-26 20:23:02 UTC",
+  "duration_sec": 170.2,
   "sources_ok": 81,
   "sources_failed": 12,
   "failed_sources": [
@@ -17,77 +17,77 @@
     "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/protocols/tuic.txt",
     "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/protocols/tuic_base64.txt"
   ],
-  "raw_configs": 141693,
-  "unique_configs": 61711,
-  "duplicates_removed": 79982,
-  "alive_configs": 27212,
+  "raw_configs": 141809,
+  "unique_configs": 61726,
+  "duplicates_removed": 80083,
+  "alive_configs": 26978,
   "protocols": {
-    "vless": 18047,
-    "ss": 1990,
-    "trojan": 3430,
-    "vmess": 3712,
-    "hysteria2": 18,
+    "ss": 1974,
+    "vless": 17868,
+    "trojan": 3444,
+    "vmess": 3658,
+    "hysteria2": 19,
     "ssr": 1,
     "tuic": 14
   },
   "countries": {
-    "CA": 13344,
-    "US": 4566,
-    "DE": 1329,
-    "NL": 916,
-    "GB": 747,
-    "RU": 659,
-    "SG": 530,
-    "FR": 420,
-    "IR": 384,
-    "SE": 361,
-    "JP": 296,
-    "FI": 294,
+    "CA": 13237,
+    "US": 4547,
+    "DE": 1300,
+    "NL": 906,
+    "GB": 744,
+    "RU": 651,
+    "SG": 492,
+    "FR": 419,
+    "IR": 382,
+    "SE": 358,
+    "JP": 299,
+    "FI": 292,
     "BZ": 272,
-    "PL": 233,
+    "PL": 227,
     "CR": 227,
     "HK": 215,
-    "TR": 207,
-    "CY": 156,
-    "ES": 142,
+    "TR": 204,
+    "CY": 154,
+    "ES": 143,
     "SC": 136,
-    "KZ": 130,
-    "IT": 110,
-    "KR": 89,
+    "KZ": 132,
+    "IT": 108,
     "EE": 89,
-    "CH": 87,
-    "CZ": 78,
-    "AU": 76,
+    "KR": 88,
+    "CH": 81,
+    "CZ": 77,
+    "AU": 75,
     "AT": 71,
-    "LV": 66,
+    "LV": 68,
     "UA": 63,
     "CW": 59,
     "BG": 57,
     "BR": 56,
-    "LT": 54,
     "AE": 54,
-    "RO": 49,
+    "LT": 53,
+    "RO": 47,
     "CN": 46,
-    "TW": 44,
+    "TW": 45,
+    "ZA": 35,
     "HU": 35,
-    "ZA": 34,
-    "AL": 33,
+    "AL": 32,
     "BE": 31,
-    "IN": 29,
-    "IE": 24,
+    "IN": 30,
+    "IE": 26,
     "PH": 20,
     "DK": 19,
-    "NO": 18,
-    "IL": 18,
+    "IL": 19,
+    "NO": 17,
     "TH": 17,
-    "MX": 15,
+    "SA": 15,
+    "MX": 14,
     "MY": 14,
     "MD": 14,
-    "LU": 13,
-    "SA": 13,
-    "VN": 12,
+    "VN": 14,
     "ID": 12,
     "BY": 11,
+    "LU": 10,
     "IM": 9,
     "RS": 8,
     "NZ": 8,
@@ -106,6 +106,7 @@
     "MT": 3,
     "PK": 3,
     "PT": 3,
+    "TN": 3,
     "SI": 2,
     "KP": 2,
     "MN": 2,
@@ -113,7 +114,6 @@
     "IS": 2,
     "KH": 2,
     "EC": 2,
-    "TN": 2,
     "LY": 1,
     "KW": 1,
     "KG": 1,
@@ -123,76 +123,76 @@
     "BH": 1,
     "PE": 1,
     "BO": 1,
-    "CL": 1
+    "CO": 1
   },
   "source_stats": {
     "https://outlinekeys.com/sitemap.xml": {
       "total": 18826,
-      "alive": 7618
+      "alive": 7611
     },
     "https://raw.githubusercontent.com/LalatinaHub/Mineral/refs/heads/master/result/nodes": {
       "total": 17589,
-      "alive": 11424
+      "alive": 11361
     },
     "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt": {
       "total": 13537,
-      "alive": 5122
+      "alive": 5042
     },
     "https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub_all.txt": {
       "total": 13029,
-      "alive": 5716
+      "alive": 5613
     },
     "https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Vmess.txt": {
-      "total": 6871,
-      "alive": 3646
+      "total": 6883,
+      "alive": 3581
     },
     "https://trojanvmess.pages.dev/cmcm?b64": {
-      "total": 4492,
-      "alive": 1450
+      "total": 4490,
+      "alive": 1441
     },
     "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt": {
       "total": 3586,
-      "alive": 1646
+      "alive": 1617
     },
     "https://raw.githubusercontent.com/10ium/base64-encoder/main/encoded/10ium_mixed_iran.txt": {
       "total": 3363,
-      "alive": 1620
+      "alive": 1598
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless": {
       "total": 2738,
-      "alive": 1272
+      "alive": 1246
     },
     "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/vless_iran.txt": {
       "total": 2343,
-      "alive": 790
+      "alive": 781
+    },
+    "https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Germany.txt": {
+      "total": 1455,
+      "alive": 390
     },
     "https://raw.githubusercontent.com/10ium/V2Hub3/main/merged_base64": {
       "total": 1453,
-      "alive": 1178
-    },
-    "https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Germany.txt": {
-      "total": 1442,
-      "alive": 384
+      "alive": 1157
     },
     "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/ShadowSocks.txt": {
       "total": 1211,
-      "alive": 645
+      "alive": 632
     },
     "https://raw.githubusercontent.com/aqayerez/MatnOfficial-VPN/refs/heads/main/MatnOfficial": {
       "total": 757,
-      "alive": 424
+      "alive": 421
     },
     "https://gitlab.com/china-group1/china-project/-/raw/main/mahsa": {
       "total": 655,
-      "alive": 306
+      "alive": 297
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/ss": {
       "total": 560,
-      "alive": 334
+      "alive": 333
     },
     "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt": {
       "total": 479,
-      "alive": 302
+      "alive": 303
     },
     "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/mixed_iran.txt": {
       "total": 454,
@@ -200,19 +200,19 @@
     },
     "https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/reality": {
       "total": 452,
-      "alive": 368
+      "alive": 356
+    },
+    "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt": {
+      "total": 401,
+      "alive": 321
     },
     "https://raw.githubusercontent.com/NiREvil/vless/main/sub/singbox.json": {
       "total": 384,
-      "alive": 196
+      "alive": 194
     },
     "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/ss_iran.txt": {
       "total": 370,
-      "alive": 89
-    },
-    "https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt": {
-      "total": 350,
-      "alive": 268
+      "alive": 88
     },
     "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/speed.txt": {
       "total": 340,
@@ -220,35 +220,35 @@
     },
     "https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/shadowsocks": {
       "total": 325,
-      "alive": 318
+      "alive": 311
     },
     "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt": {
       "total": 305,
-      "alive": 155
+      "alive": 154
+    },
+    "https://shadowmere.akiel.dev/api/b64sub/": {
+      "total": 275,
+      "alive": 269
+    },
+    "https://shadowmere.xyz/api/b64sub/": {
+      "total": 275,
+      "alive": 269
     },
     "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt": {
       "total": 270,
-      "alive": 103
+      "alive": 101
     },
     "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt": {
       "total": 250,
-      "alive": 98
-    },
-    "https://shadowmere.akiel.dev/api/b64sub/": {
-      "total": 249,
-      "alive": 247
-    },
-    "https://shadowmere.xyz/api/b64sub/": {
-      "total": 249,
-      "alive": 247
+      "alive": 97
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/trojan": {
       "total": 229,
-      "alive": 186
+      "alive": 187
     },
     "https://sub.irys.dpdns.org/auto": {
       "total": 223,
-      "alive": 44
+      "alive": 46
     },
     "https://raw.githubusercontent.com/therealaleph/Iran-configs/refs/heads/main/ir_configs.txt": {
       "total": 217,
@@ -260,19 +260,19 @@
     },
     "https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/mixed_iran.txt": {
       "total": 189,
-      "alive": 29
-    },
-    "https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Hysteria2.txt": {
-      "total": 169,
-      "alive": 10
+      "alive": 30
     },
     "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt": {
       "total": 169,
-      "alive": 108
+      "alive": 107
+    },
+    "https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Hysteria2.txt": {
+      "total": 167,
+      "alive": 11
     },
     "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt": {
       "total": 152,
-      "alive": 105
+      "alive": 104
     },
     "https://raw.githubusercontent.com/Stinsonysm/GO_V2rayCollector/refs/heads/main/trojan_iran.txt": {
       "total": 139,
@@ -296,15 +296,15 @@
     },
     "https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub.txt": {
       "total": 115,
-      "alive": 77
+      "alive": 82
     },
     "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/refs/heads/main/output/base64/mix-uri": {
       "total": 114,
-      "alive": 89
+      "alive": 88
     },
     "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt": {
-      "total": 108,
-      "alive": 97
+      "total": 97,
+      "alive": 91
     },
     "https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/ss_iran.txt": {
       "total": 91,
@@ -316,11 +316,11 @@
     },
     "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output_iran/iran_top100_checked.txt": {
       "total": 87,
-      "alive": 71
+      "alive": 70
     },
     "https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Reality": {
       "total": 80,
-      "alive": 69
+      "alive": 67
     },
     "https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/vless_iran.txt": {
       "total": 74,
@@ -335,8 +335,8 @@
       "alive": 12
     },
     "https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt": {
-      "total": 39,
-      "alive": 37
+      "total": 43,
+      "alive": 41
     },
     "https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/tuic.txt": {
       "total": 37,
@@ -346,21 +346,21 @@
       "total": 31,
       "alive": 1
     },
-    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt": {
-      "total": 30,
-      "alive": 10
-    },
     "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/hys-tuic.txt": {
       "total": 20,
       "alive": 0
     },
+    "https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt": {
+      "total": 18,
+      "alive": 6
+    },
     "https://rahi-eq3.pages.dev/api/configs?limit=all": {
       "total": 12,
-      "alive": 8
+      "alive": 7
     },
     "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub": {
       "total": 10,
-      "alive": 9
+      "alive": 8
     },
     "https://raw.githubusercontent.com/valid7996/Gozargah/refs/heads/main/Gozargah.yaml": {
       "total": 6,
