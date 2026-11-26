@@ -11,10 +11,10 @@
 @MTProtoProxies  # 81 proxies, 6 live
 @ProxyMTProto  # 135 proxies, 116 live
 @TelMTProto  # 101 proxies, 83 live
-@mtpproxy  # 180 proxies, 35 live
-@TProxyRU  # 116 proxies, 103 live
-@mtproxy4free  # 439 proxies, 439 live
+@mtpproxy  # 180 proxies, 31 live
+@TProxyRU  # 116 proxies, 28 live
+@mtproxy4free  # 439 proxies, 322 live
 @mtproto_proxy_russia  # 104 proxies, 94 live
-@webproxy  # 98 proxies, 81 live
+@webproxy  # 98 proxies, 82 live
 
 @Myporoxy  # 1 proxies, 0 live
