@@ -2,8 +2,8 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-27T16:25:10+00:00",
-  "total": 31,
+  "last_update": "2026-11-27T18:25:57+00:00",
+  "total": 29,
   "countries": [
     {
       "country": "United-Kingdom",
@@ -27,13 +27,13 @@
       "country": "Canada",
       "country_code": "CA",
       "flag": "🇨🇦",
-      "count": 4
+      "count": 3
     },
     {
       "country": "France",
       "country_code": "FR",
       "flag": "🇫🇷",
-      "count": 4
+      "count": 3
     }
   ],
   "configs": [
@@ -58,17 +58,6 @@
       "transport": "TCP",
       "server": "144.217.253.149",
       "collected_at": "2026-11-03T15:11:53+00:00"
-    },
-    {
-      "id": "ovpn-81bbac7e2df48ade",
-      "filename": "mehdisedighinasab-Canada-1-UDP-25000.ovpn",
-      "country": "Canada",
-      "country_code": "CA",
-      "flag": "🇨🇦",
-      "port": 25000,
-      "transport": "UDP",
-      "server": "144.217.253.149",
-      "collected_at": "2026-11-03T15:11:55+00:00"
     },
     {
       "id": "ovpn-cd4157fb09507cfc",
@@ -110,17 +99,6 @@
       "country_code": "FR",
       "flag": "🇫🇷",
       "port": 25000,
-      "transport": "UDP",
-      "server": "5.196.64.231",
-      "collected_at": "2026-11-03T15:12:16+00:00"
-    },
-    {
-      "id": "ovpn-7c110452ab404d3a",
-      "filename": "mehdisedighinasab-France-2-UDP-53.ovpn",
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "port": 53,
       "transport": "UDP",
       "server": "5.196.64.231",
       "collected_at": "2026-11-03T15:12:16+00:00"
@@ -324,15 +302,15 @@
       "collected_at": "2026-11-03T15:11:46+00:00"
     },
     {
-      "id": "ovpn-6f677ed3a1d5d6cf",
-      "filename": "mehdisedighinasab-United-States-1-UDP-53.ovpn",
+      "id": "ovpn-88cd3db9297257c0",
+      "filename": "mehdisedighinasab-United-States-1-UDP-25000.ovpn",
       "country": "United-States",
       "country_code": "US",
       "flag": "🇺🇸",
-      "port": 53,
+      "port": 25000,
       "transport": "UDP",
       "server": "147.135.15.16",
-      "collected_at": "2026-11-03T15:11:47+00:00"
+      "collected_at": "2026-11-03T15:11:48+00:00"
     },
     {
       "id": "ovpn-28041551a9386265",
