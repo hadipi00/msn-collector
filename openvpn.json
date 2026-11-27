@@ -2,7 +2,7 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-27T02:25:34+00:00",
+  "last_update": "2026-11-27T04:25:59+00:00",
   "total": 31,
   "countries": [
     {
@@ -21,7 +21,7 @@
       "country": "Germany",
       "country_code": "DE",
       "flag": "🇩🇪",
-      "count": 8
+      "count": 7
     },
     {
       "country": "Canada",
@@ -33,7 +33,7 @@
       "country": "France",
       "country_code": "FR",
       "flag": "🇫🇷",
-      "count": 3
+      "count": 4
     }
   ],
   "configs": [
@@ -115,6 +115,17 @@
       "collected_at": "2026-11-03T15:12:16+00:00"
     },
     {
+      "id": "ovpn-7c110452ab404d3a",
+      "filename": "mehdisedighinasab-France-2-UDP-53.ovpn",
+      "country": "France",
+      "country_code": "FR",
+      "flag": "🇫🇷",
+      "port": 53,
+      "transport": "UDP",
+      "server": "5.196.64.231",
+      "collected_at": "2026-11-03T15:12:16+00:00"
+    },
+    {
       "id": "ovpn-3f88c08c52b6e67e",
       "filename": "mehdisedighinasab-Germany-1-TCP-443.ovpn",
       "country": "Germany",
@@ -135,17 +146,6 @@
       "transport": "TCP",
       "server": "51.75.145.20",
       "collected_at": "2026-11-03T15:12:08+00:00"
-    },
-    {
-      "id": "ovpn-1c1cec271a7919ec",
-      "filename": "mehdisedighinasab-Germany-1-UDP-25000.ovpn",
-      "country": "Germany",
-      "country_code": "DE",
-      "flag": "🇩🇪",
-      "port": 25000,
-      "transport": "UDP",
-      "server": "51.75.145.20",
-      "collected_at": "2026-11-03T15:12:09+00:00"
     },
     {
       "id": "ovpn-4864dd8e4dd55925",
