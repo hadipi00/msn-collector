@@ -812,20 +812,11 @@
     "mehdisedighinasab-Germany-2-UDP-25000.ovpn": "25ec3be2e04e6ad8ee20c4d3a051c2856d5da1e3575c49f6eb232e002b1a5cac",
     "mehdisedighinasab-France-2-TCP-443.ovpn": "6426893339b842862826f7e0a59f05c1d0b118cec49eb3d73c88138e698e7042",
     "mehdisedighinasab-France-2-TCP-80.ovpn": "936d4f397d66c97232d415ac5731d56436e238d9a29d412851afc58b6a878c26",
-    "mehdisedighinasab-France-2-UDP-53.ovpn": "4b40bca7ccef7c0ee760aa0925e2a47b6e3bf78e36fb9fdbbcbc180bd8cc51dd",
     "mehdisedighinasab-France-2-UDP-25000.ovpn": "9d808bef7e4de4ba75afc9e5e2dcfdc3548a0ee3580e3c52319378d8ff1dd527",
-    "openvpn.json": "22847bf331a03e3504e07c44ee6c255217a049c825b7e84aaa91f131d75a3a64",
+    "openvpn.json": "f1d4ef3a1c596ed618a9f0fd9da148726e07bee912ff6c61768ae8c50437d998",
     "README.txt": "5555c73b7c991123012fcbf565e1563aaefe78aa29812148dbbfcafcb08ec985"
   },
   "runs": [
-    {
-      "ts": "2026-11-26T10:24:51+00:00",
-      "new_configs": 0,
-      "duplicates": 40,
-      "invalid": 0,
-      "vpnbook_new": 0,
-      "duration_sec": 23.7
-    },
     {
       "ts": "2026-11-26T12:25:18+00:00",
       "new_configs": 0,
@@ -897,6 +888,14 @@
       "invalid": 0,
       "vpnbook_new": 0,
       "duration_sec": 28.0
+    },
+    {
+      "ts": "2026-11-27T02:25:07+00:00",
+      "new_configs": 0,
+      "duplicates": 40,
+      "invalid": 0,
+      "vpnbook_new": 0,
+      "duration_sec": 27.1
     }
   ],
   "manifest_vpnbook": {
