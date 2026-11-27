@@ -2,7 +2,7 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-27T10:25:52+00:00",
+  "last_update": "2026-11-27T12:26:02+00:00",
   "total": 31,
   "countries": [
     {
@@ -24,15 +24,15 @@
       "count": 8
     },
     {
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "count": 4
-    },
-    {
       "country": "Canada",
       "country_code": "CA",
       "flag": "🇨🇦",
+      "count": 4
+    },
+    {
+      "country": "France",
+      "country_code": "FR",
+      "flag": "🇫🇷",
       "count": 3
     }
   ],
@@ -71,6 +71,17 @@
       "collected_at": "2026-11-03T15:11:55+00:00"
     },
     {
+      "id": "ovpn-cd4157fb09507cfc",
+      "filename": "mehdisedighinasab-Canada-1-UDP-53.ovpn",
+      "country": "Canada",
+      "country_code": "CA",
+      "flag": "🇨🇦",
+      "port": 53,
+      "transport": "UDP",
+      "server": "144.217.253.149",
+      "collected_at": "2026-11-03T15:11:54+00:00"
+    },
+    {
       "id": "ovpn-cdec1e2a38dc0aba",
       "filename": "mehdisedighinasab-France-2-TCP-443.ovpn",
       "country": "France",
@@ -99,17 +110,6 @@
       "country_code": "FR",
       "flag": "🇫🇷",
       "port": 25000,
-      "transport": "UDP",
-      "server": "5.196.64.231",
-      "collected_at": "2026-11-03T15:12:16+00:00"
-    },
-    {
-      "id": "ovpn-7c110452ab404d3a",
-      "filename": "mehdisedighinasab-France-2-UDP-53.ovpn",
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "port": 53,
       "transport": "UDP",
       "server": "5.196.64.231",
       "collected_at": "2026-11-03T15:12:16+00:00"
