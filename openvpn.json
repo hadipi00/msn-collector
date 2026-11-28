@@ -2,8 +2,8 @@
   "project": "MSN Collector",
   "developer": "Mehdi Sedighinasab",
   "protocol": "OpenVPN",
-  "last_update": "2026-11-28T08:25:24+00:00",
-  "total": 32,
+  "last_update": "2026-11-28T10:25:26+00:00",
+  "total": 29,
   "countries": [
     {
       "country": "United-States",
@@ -12,16 +12,16 @@
       "count": 8
     },
     {
-      "country": "United-Kingdom",
-      "country_code": "GB",
-      "flag": "🇬🇧",
-      "count": 8
-    },
-    {
       "country": "Germany",
       "country_code": "DE",
       "flag": "🇩🇪",
       "count": 8
+    },
+    {
+      "country": "United-Kingdom",
+      "country_code": "GB",
+      "flag": "🇬🇧",
+      "count": 6
     },
     {
       "country": "Canada",
@@ -33,7 +33,7 @@
       "country": "France",
       "country_code": "FR",
       "flag": "🇫🇷",
-      "count": 4
+      "count": 3
     }
   ],
   "configs": [
@@ -110,17 +110,6 @@
       "country_code": "FR",
       "flag": "🇫🇷",
       "port": 25000,
-      "transport": "UDP",
-      "server": "5.196.64.231",
-      "collected_at": "2026-11-03T15:12:16+00:00"
-    },
-    {
-      "id": "ovpn-7c110452ab404d3a",
-      "filename": "mehdisedighinasab-France-2-UDP-53.ovpn",
-      "country": "France",
-      "country_code": "FR",
-      "flag": "🇫🇷",
-      "port": 53,
       "transport": "UDP",
       "server": "5.196.64.231",
       "collected_at": "2026-11-03T15:12:16+00:00"
@@ -236,17 +225,6 @@
       "collected_at": "2026-11-03T15:11:58+00:00"
     },
     {
-      "id": "ovpn-3cc3ef02cd29ee88",
-      "filename": "mehdisedighinasab-United-Kingdom-1-UDP-25000.ovpn",
-      "country": "United-Kingdom",
-      "country_code": "GB",
-      "flag": "🇬🇧",
-      "port": 25000,
-      "transport": "UDP",
-      "server": "145.239.252.205",
-      "collected_at": "2026-11-03T15:11:59+00:00"
-    },
-    {
       "id": "ovpn-cb932d1ce1da3255",
       "filename": "mehdisedighinasab-United-Kingdom-1-UDP-53.ovpn",
       "country": "United-Kingdom",
@@ -278,17 +256,6 @@
       "transport": "TCP",
       "server": "145.239.255.68",
       "collected_at": "2026-11-03T15:12:01+00:00"
-    },
-    {
-      "id": "ovpn-298ae328a70ea693",
-      "filename": "mehdisedighinasab-United-Kingdom-2-UDP-25000.ovpn",
-      "country": "United-Kingdom",
-      "country_code": "GB",
-      "flag": "🇬🇧",
-      "port": 25000,
-      "transport": "UDP",
-      "server": "145.239.255.68",
-      "collected_at": "2026-11-03T15:12:07+00:00"
     },
     {
       "id": "ovpn-c681def18a12e59d",
