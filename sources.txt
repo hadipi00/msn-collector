@@ -9,37 +9,37 @@
 # ============================================================
 
 https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub  # 13 configs, 12 live
-https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/ss  # 574 configs, 341 live
+https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/ss  # 574 configs, 337 live
 https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/trojan  # 219 configs, 186 live
-https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless  # 2766 configs, 1299 live
-https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt  # 100 configs, 94 live
-https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/mixed_iran.txt  # 189 configs, 31 live
+https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless  # 2766 configs, 1248 live
+https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt  # 97 configs, 91 live
+https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/mixed_iran.txt  # 189 configs, 30 live
 https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/vless_iran.txt  # 74 configs, 21 live
 https://raw.githubusercontent.com/HosseinKoofi/GO_V2rayCollector/main/ss_iran.txt  # 91 configs, 12 live
-https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Vmess.txt  # 6900 configs, 3697 live
+https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Vmess.txt  # 6900 configs, 3595 live
 https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Hysteria2.txt  # 172 configs, 11 live
-https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Germany.txt  # 1466 configs, 429 live
+https://raw.githubusercontent.com/Argh94/V2RayAutoConfig/refs/heads/main/configs/Germany.txt  # 1466 configs, 382 live
 https://raw.githubusercontent.com/Stinsonysm/GO_V2rayCollector/refs/heads/main/trojan_iran.txt  # 139 configs, 35 live
-https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt  # 241 configs, 100 live
-https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub.txt  # 115 configs, 79 live
-https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub_all.txt  # 13029 configs, 5726 live
+https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt  # 241 configs, 97 live
+https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub.txt  # 115 configs, 77 live
+https://raw.githubusercontent.com/liketolivefree/kobabi/main/sub_all.txt  # 13029 configs, 5628 live
 https://raw.githubusercontent.com/10ium/V2ray-Config/main/Splitted-By-Protocol/hysteria2.txt  # 28 configs, 0 live
-https://raw.githubusercontent.com/10ium/V2Hub3/main/merged_base64  # 1523 configs, 1235 live
-https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/shadowsocks  # 365 configs, 359 live
-https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/reality  # 438 configs, 348 live
-https://raw.githubusercontent.com/10ium/base64-encoder/main/encoded/10ium_mixed_iran.txt  # 3400 configs, 1680 live
-https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt  # 3552 configs, 1638 live
-https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/ShadowSocks.txt  # 1269 configs, 697 live
-https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt  # 502 configs, 329 live
+https://raw.githubusercontent.com/10ium/V2Hub3/main/merged_base64  # 1523 configs, 1223 live
+https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/shadowsocks  # 365 configs, 361 live
+https://raw.githubusercontent.com/10ium/V2Hub3/refs/heads/main/Split/Normal/reality  # 438 configs, 345 live
+https://raw.githubusercontent.com/10ium/base64-encoder/main/encoded/10ium_mixed_iran.txt  # 3400 configs, 1667 live
+https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt  # 3552 configs, 1626 live
+https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/ShadowSocks.txt  # 1269 configs, 698 live
+https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt  # 502 configs, 328 live
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt  # fetch failed
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt  # fetch failed
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt  # fetch failed
 https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_base64_Sub.txt  # fetch failed
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt  # 198 configs, 72 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt  # 175 configs, 113 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt  # 175 configs, 113 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt  # 148 configs, 119 live
-https://raw.githubusercontent.com/aqayerez/MatnOfficial-VPN/refs/heads/main/MatnOfficial  # 757 configs, 426 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt  # 189 configs, 67 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt  # 188 configs, 124 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt  # 180 configs, 117 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt  # 139 configs, 111 live
+https://raw.githubusercontent.com/aqayerez/MatnOfficial-VPN/refs/heads/main/MatnOfficial  # 757 configs, 424 live
 https://raw.githubusercontent.com/bamdad23/JavidnamanIran/refs/heads/main/WS%2BHysteria2  # 0 configs, 0 live
 https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/speed.txt  # 340 configs, 89 live
 https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/hys-tuic.txt  # 20 configs, 0 live
@@ -47,18 +47,18 @@ https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Reality 
 https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/refs/heads/main/Vless  # 0 configs, 0 live
 https://raw.githubusercontent.com/AzadNetCH/Clash/refs/heads/main/AzadNet_iOS.txt  # 1 configs, 0 live
 https://raw.githubusercontent.com/Proxydaemitelegram/Proxydaemi44/refs/heads/main/Proxydaemi44  # 88 configs, 27 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt  # 294 configs, 185 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt  # 291 configs, 132 live
-https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt  # 184 configs, 81 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt  # 289 configs, 171 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt  # 304 configs, 117 live
+https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt  # 194 configs, 85 live
 https://raw.githubusercontent.com/rango-cfs/NewCollector/refs/heads/main/v2ray_links.txt  # 2 configs, 2 live
 
 # ---- [2026-10-26] اضافه شده به درخواست کاربر | Added per user request ----
-https://gitlab.com/china-group1/china-project/-/raw/main/mahsa  # 655 configs, 262 live
-https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt  # 392 configs, 312 live
+https://gitlab.com/china-group1/china-project/-/raw/main/mahsa  # 655 configs, 295 live
+https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt  # 384 configs, 305 live
 https://raw.githubusercontent.com/hiddify/hiddify-app/refs/heads/main/test.configs/mahsa  # 0 configs, 0 live
 
 # ---- NiREvil/vless (sing-box با ۵۰۰+ کانفیگ) | NiREvil/vless repo ----
-https://raw.githubusercontent.com/NiREvil/vless/main/sub/singbox.json  # 384 configs, 196 live
+https://raw.githubusercontent.com/NiREvil/vless/main/sub/singbox.json  # 384 configs, 195 live
 
 # ---- لینک‌های ساب/کانفیگ داخل README ریپوی NiREvil/vless ----
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/vmess.txt  # fetch failed
@@ -69,29 +69,29 @@ https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/update/provi
 https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml  # 128 configs, 90 live
 https://raw.githubusercontent.com/ndsphonemy/proxy-sub/refs/heads/main/mobile.txt  # 0 configs, 0 live
 https://raw.githubusercontent.com/patterniha/Free-Configs/main/configs.txt  # 15 configs, 5 live
-https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output_iran/iran_top100_checked.txt  # 87 configs, 73 live
+https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output_iran/iran_top100_checked.txt  # 87 configs, 75 live
 https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output_iran/converted/iran_top100_clash_config.yaml  # 0 configs, 0 live
-https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt  # 13537 configs, 5082 live
-https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt  # 126 configs, 90 live
+https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt  # 13537 configs, 5008 live
+https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt  # 126 configs, 86 live
 https://raw.githubusercontent.com/therealaleph/Iran-configs/refs/heads/main/ir_configs.txt  # 217 configs, 91 live
 https://raw.githubusercontent.com/valid7996/Gozargah/refs/heads/main/Gozargah.yaml  # 6 configs, 5 live
 https://raw.githubusercontent.com/valid7996/Gozargah/refs/heads/main/Gozargah_sing-box_sub  # 6 configs, 5 live
-https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/refs/heads/main/output/base64/mix-uri  # 124 configs, 96 live
-https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/mixed_iran.txt  # 454 configs, 79 live
-https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/ss_iran.txt  # 370 configs, 83 live
-https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/vless_iran.txt  # 2343 configs, 782 live
-https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt  # 45 configs, 45 live
-https://raw.githubusercontent.com/LalatinaHub/Mineral/refs/heads/master/result/nodes  # 17540 configs, 11353 live
+https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/refs/heads/main/output/base64/mix-uri  # 124 configs, 92 live
+https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/mixed_iran.txt  # 454 configs, 80 live
+https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/ss_iran.txt  # 370 configs, 85 live
+https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/vless_iran.txt  # 2343 configs, 772 live
+https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt  # 46 configs, 46 live
+https://raw.githubusercontent.com/LalatinaHub/Mineral/refs/heads/master/result/nodes  # 17540 configs, 11325 live
 https://rahi-eq3.pages.dev/api/configs?limit=all  # 12 configs, 6 live
-https://sub.irys.dpdns.org/auto  # 223 configs, 44 live
-https://trojanvmess.pages.dev/cmcm?b64  # 4605 configs, 1518 live
+https://sub.irys.dpdns.org/auto  # 223 configs, 41 live
+https://trojanvmess.pages.dev/cmcm?b64  # 4610 configs, 1513 live
 
 # ---- [2026-10-26] shadowmere — اضافه شده به درخواست کاربر | added per user request ----
-https://shadowmere.akiel.dev/api/b64sub/  # 349 configs, 343 live
-https://shadowmere.xyz/api/b64sub/  # 349 configs, 343 live
+https://shadowmere.akiel.dev/api/b64sub/  # 324 configs, 322 live
+https://shadowmere.xyz/api/b64sub/  # 324 configs, 322 live
 
 # ---- [2026-10-26] outlinekeys.com — Outline(ss) + Vless + Trojan، خودکار از sitemap برداشت می‌شود ----
-https://outlinekeys.com/sitemap.xml  # 18988 configs, 7729 live
+https://outlinekeys.com/sitemap.xml  # 18988 configs, 7722 live
 
 # ---- [2026-10-26] Epodonios/v2ray-configs — فایل‌های ساب بیشتر (درخواست کاربر) ----
 https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt  # fetch failed

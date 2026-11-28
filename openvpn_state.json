@@ -792,6 +792,7 @@
     "mehdisedighinasab-United-States-2-UDP-25000.ovpn": "f7e63e3eb834a3c8795bca0359bfdd50a6a28fc87f61a5eadb3648e76c4d3edc",
     "mehdisedighinasab-Canada-1-TCP-443.ovpn": "4c0c852c251de752f6269c7019bab75f8c99ddaf3255f448394c36c8c430c7a8",
     "mehdisedighinasab-Canada-1-TCP-80.ovpn": "8df4f1ffddecca0ff15f7b6cf3c7807ed6fefc4b7acc61fe6322fa3ac34ff327",
+    "mehdisedighinasab-Canada-1-UDP-53.ovpn": "391969d70d5fc9ad43cad5cc323a133f328b25b4abc24e299336dd7766fc2d58",
     "mehdisedighinasab-Canada-1-UDP-25000.ovpn": "93d062dc66641ae49d973106a22d415a82b7df7ceed383b99695164ac1de500b",
     "mehdisedighinasab-United-Kingdom-1-TCP-443.ovpn": "772bd144bd583e3c5487723e878d2a4ce53ec38c9e08f6ed4d9607c36c38de76",
     "mehdisedighinasab-United-Kingdom-1-TCP-80.ovpn": "ebeaf6f8b0f27442090b37ada8e74a67594ce1e80ed8891dd7225763731b5545",
@@ -813,18 +814,10 @@
     "mehdisedighinasab-France-2-TCP-80.ovpn": "936d4f397d66c97232d415ac5731d56436e238d9a29d412851afc58b6a878c26",
     "mehdisedighinasab-France-2-UDP-53.ovpn": "4b40bca7ccef7c0ee760aa0925e2a47b6e3bf78e36fb9fdbbcbc180bd8cc51dd",
     "mehdisedighinasab-France-2-UDP-25000.ovpn": "9d808bef7e4de4ba75afc9e5e2dcfdc3548a0ee3580e3c52319378d8ff1dd527",
-    "openvpn.json": "5523e904545bff5bebc0917eec863b35e6c95ab2a76199b1eb2b3742f8ba1366",
+    "openvpn.json": "0a6b520a14b26becc82d0807c2cdb8cc9241e9e24824d901f77de1dc9feb7a04",
     "README.txt": "5555c73b7c991123012fcbf565e1563aaefe78aa29812148dbbfcafcb08ec985"
   },
   "runs": [
-    {
-      "ts": "2026-11-27T12:25:35+00:00",
-      "new_configs": 0,
-      "duplicates": 40,
-      "invalid": 0,
-      "vpnbook_new": 0,
-      "duration_sec": 27.6
-    },
     {
       "ts": "2026-11-27T14:25:07+00:00",
       "new_configs": 0,
@@ -896,6 +889,14 @@
       "invalid": 0,
       "vpnbook_new": 0,
       "duration_sec": 21.8
+    },
+    {
+      "ts": "2026-11-28T04:25:08+00:00",
+      "new_configs": 0,
+      "duplicates": 40,
+      "invalid": 0,
+      "vpnbook_new": 0,
+      "duration_sec": 26.6
     }
   ],
   "manifest_vpnbook": {
